@@ -10,3 +10,15 @@ C:\Users\Ritech\Projects\School\SWE\CheckInn\Code\CheckInn\CheckInn.Entities\obj
 C:\Users\Ritech\Projects\School\SWE\CheckInn\Code\CheckInn\CheckInn.Entities\obj\Debug\net7.0\refint\CheckInn.Entities.dll
 C:\Users\Ritech\Projects\School\SWE\CheckInn\Code\CheckInn\CheckInn.Entities\obj\Debug\net7.0\CheckInn.Entities.pdb
 C:\Users\Ritech\Projects\School\SWE\CheckInn\Code\CheckInn\CheckInn.Entities\obj\Debug\net7.0\ref\CheckInn.Entities.dll
+C:\Users\Ritech\Projects\School\CheckInn\Code\CheckInn\CheckInn.Entities\bin\Debug\net7.0\CheckInn.Entities.deps.json
+C:\Users\Ritech\Projects\School\CheckInn\Code\CheckInn\CheckInn.Entities\bin\Debug\net7.0\CheckInn.Entities.dll
+C:\Users\Ritech\Projects\School\CheckInn\Code\CheckInn\CheckInn.Entities\bin\Debug\net7.0\CheckInn.Entities.pdb
+C:\Users\Ritech\Projects\School\CheckInn\Code\CheckInn\CheckInn.Entities\obj\Debug\net7.0\CheckInn.Entities.csproj.AssemblyReference.cache
+C:\Users\Ritech\Projects\School\CheckInn\Code\CheckInn\CheckInn.Entities\obj\Debug\net7.0\CheckInn.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ritech\Projects\School\CheckInn\Code\CheckInn\CheckInn.Entities\obj\Debug\net7.0\CheckInn.Entities.AssemblyInfoInputs.cache
+C:\Users\Ritech\Projects\School\CheckInn\Code\CheckInn\CheckInn.Entities\obj\Debug\net7.0\CheckInn.Entities.AssemblyInfo.cs
+C:\Users\Ritech\Projects\School\CheckInn\Code\CheckInn\CheckInn.Entities\obj\Debug\net7.0\CheckInn.Entities.csproj.CoreCompileInputs.cache
+C:\Users\Ritech\Projects\School\CheckInn\Code\CheckInn\CheckInn.Entities\obj\Debug\net7.0\CheckInn.Entities.dll
+C:\Users\Ritech\Projects\School\CheckInn\Code\CheckInn\CheckInn.Entities\obj\Debug\net7.0\refint\CheckInn.Entities.dll
+C:\Users\Ritech\Projects\School\CheckInn\Code\CheckInn\CheckInn.Entities\obj\Debug\net7.0\CheckInn.Entities.pdb
+C:\Users\Ritech\Projects\School\CheckInn\Code\CheckInn\CheckInn.Entities\obj\Debug\net7.0\ref\CheckInn.Entities.dll

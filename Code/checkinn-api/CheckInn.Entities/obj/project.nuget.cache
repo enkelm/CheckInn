@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "HxNnw0HDm/Jfml5zeFvjyof+fYRrwSBHj/kzXzHv0t876q2EA2JIgTsY3cjLNYRQmaqaNT3MhINqql2HXxndng==",
+  "dgSpecHash": "VvZVDCwjNOuxcNrTWko6jf3cHehE/kjsAORHE3ds66ytvUVp5/Mi3AV/iqYa1f8YKJjiZRMPov4Gd7X072+SMA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ritech\\Projects\\School\\CheckInn\\Code\\CheckInn\\CheckInn.Entities\\CheckInn.Entities.csproj",
+  "projectFilePath": "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Entities\\CheckInn.Entities.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ritech\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\Ritech\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "C:\\Users\\Ritech\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Ritech\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\Ritech\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",

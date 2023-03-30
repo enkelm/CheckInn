@@ -1,4 +1,6 @@
+using Autofac.Extensions.DependencyInjection;
 using Entities;
+using Entities.DTOs.Config;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Serilog;
@@ -13,6 +15,10 @@ builder.Host.UseSerilog((ctx, lc) =>
 });
 
 builder.Services.AddDbContext<ApiDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultSQLConnection")));
+
+builder.Services.AddAutofac();
+
+builder.Services.AddAutoMapper(typeof(MappingConfig));
 
 builder.Services.AddControllers();
 

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ritech\\Projects\\School\\CheckInn\\Code\\CheckInn\\CheckInn.Entities\\CheckInn.Entities.csproj": {}
+    "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Entities\\CheckInn.Entities.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ritech\\Projects\\School\\CheckInn\\Code\\CheckInn\\CheckInn.Entities\\CheckInn.Entities.csproj": {
+    "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Entities\\CheckInn.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ritech\\Projects\\School\\CheckInn\\Code\\CheckInn\\CheckInn.Entities\\CheckInn.Entities.csproj",
+        "projectUniqueName": "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Entities\\CheckInn.Entities.csproj",
         "projectName": "CheckInn.Entities",
-        "projectPath": "C:\\Users\\Ritech\\Projects\\School\\CheckInn\\Code\\CheckInn\\CheckInn.Entities\\CheckInn.Entities.csproj",
+        "projectPath": "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Entities\\CheckInn.Entities.csproj",
         "packagesPath": "C:\\Users\\Ritech\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ritech\\Projects\\School\\CheckInn\\Code\\CheckInn\\CheckInn.Entities\\obj\\",
+        "outputPath": "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Entities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ritech\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -43,6 +43,10 @@
             "AutoMapper": {
               "target": "Package",
               "version": "[12.0.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.0, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
