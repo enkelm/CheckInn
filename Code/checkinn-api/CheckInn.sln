@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckInn", "CheckInn\CheckInn.csproj", "{AD85D5C6-99BE-4AF4-9DFB-07AB989A96D7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model", "Model", "{3EB54BB5-2CD1-498F-8917-2736A700D326}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckInn.Entities", "CheckInn.Entities\CheckInn.Entities.csproj", "{54047475-BEB7-4B2B-BE9D-841181E73315}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckInn.Repositories", "CheckInn.Repositories\CheckInn.Repositories.csproj", "{0EC08C20-2672-4D58-AB5E-5E2812DBDB0A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD85D5C6-99BE-4AF4-9DFB-07AB989A96D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD85D5C6-99BE-4AF4-9DFB-07AB989A96D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD85D5C6-99BE-4AF4-9DFB-07AB989A96D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD85D5C6-99BE-4AF4-9DFB-07AB989A96D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54047475-BEB7-4B2B-BE9D-841181E73315}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54047475-BEB7-4B2B-BE9D-841181E73315}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54047475-BEB7-4B2B-BE9D-841181E73315}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54047475-BEB7-4B2B-BE9D-841181E73315}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EC08C20-2672-4D58-AB5E-5E2812DBDB0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EC08C20-2672-4D58-AB5E-5E2812DBDB0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EC08C20-2672-4D58-AB5E-5E2812DBDB0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EC08C20-2672-4D58-AB5E-5E2812DBDB0A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{54047475-BEB7-4B2B-BE9D-841181E73315} = {3EB54BB5-2CD1-498F-8917-2736A700D326}
+		{0EC08C20-2672-4D58-AB5E-5E2812DBDB0A} = {3EB54BB5-2CD1-498F-8917-2736A700D326}
+	EndGlobalSection
+EndGlobal
