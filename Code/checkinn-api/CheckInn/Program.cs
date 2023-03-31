@@ -1,4 +1,7 @@
+using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using CheckInn.Repositories.DI;
+using CheckInn.Services.DI;
 using Entities;
 using Entities.DTOs.Config;
 using Microsoft.EntityFrameworkCore;
@@ -14,9 +17,15 @@ builder.Host.UseSerilog((ctx, lc) =>
     lc.MinimumLevel.Debug().WriteTo.Console();
 });
 
-builder.Services.AddDbContext<ApiDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultSQLConnection")));
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
+    .ConfigureContainer<ContainerBuilder>(builder =>
+    {
+        builder.RegisterModule<ServiceModule>();
+        builder.RegisterModule<RepositoryModule>();
+    });
 
-builder.Services.AddAutofac();
+builder.Services.AddDbContext<ApiDbContext>(options => 
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultSQLConnection")));
 
 builder.Services.AddAutoMapper(typeof(MappingConfig));
 
@@ -55,9 +64,6 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
-
-builder.Services.AddDbContext<ApiDbContext>( options => 
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 

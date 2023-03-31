@@ -10,9 +10,11 @@
         "dependencies": {
           "AutoMapper": "12.0.1",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.0",
+          "Autofac": "7.0.0",
           "Autofac.Extensions.DependencyInjection": "8.0.0",
           "CheckInn.Entities": "1.0.0",
           "CheckInn.Repositories": "1.0.0",
+          "CheckInn.Services": "1.0.0",
           "Microsoft.AspNetCore.OpenApi": "7.0.4",
           "Microsoft.EntityFrameworkCore": "7.0.4",
           "Microsoft.EntityFrameworkCore.Design": "7.0.4",
@@ -27,20 +29,20 @@
           "CheckInn.dll": {}
         }
       },
-      "Autofac/6.4.0": {
+      "Autofac/7.0.0": {
         "dependencies": {
           "System.Diagnostics.DiagnosticSource": "5.0.0"
         },
         "runtime": {
-          "lib/net6.0/Autofac.dll": {
-            "assemblyVersion": "6.4.0.0",
-            "fileVersion": "6.4.0.0"
+          "lib/net7.0/Autofac.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.0.0"
           }
         }
       },
       "Autofac.Extensions.DependencyInjection/8.0.0": {
         "dependencies": {
-          "Autofac": "6.4.0",
+          "Autofac": "7.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0"
         },
         "runtime": {
@@ -2548,6 +2550,14 @@
         "runtime": {
           "CheckInn.Repositories.dll": {}
         }
+      },
+      "CheckInn.Services/1.0.0": {
+        "dependencies": {
+          "CheckInn.Repositories": "1.0.0"
+        },
+        "runtime": {
+          "CheckInn.Services.dll": {}
+        }
       }
     }
   },
@@ -2557,12 +2567,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Autofac/6.4.0": {
+    "Autofac/7.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-tkFxl6wAPuwVhrlN8wuNADnd+k2tv4ReP7ZZSL0vjfcN0RcfC9v25ogxK6b03HC7D4NwWjSLf1G/zTG8Bw43wQ==",
-      "path": "autofac/6.4.0",
-      "hashPath": "autofac.6.4.0.nupkg.sha512"
+      "sha512": "sha512-phR/GEk5h2kQWbMl70cZzCW5ysGxmz2ClaX5CuTw9qc3wtdDu3l9GAhWiWmZLltCytEIxIw98NtAraiOxazqLg==",
+      "path": "autofac/7.0.0",
+      "hashPath": "autofac.7.0.0.nupkg.sha512"
     },
     "Autofac.Extensions.DependencyInjection/8.0.0": {
       "type": "package",
@@ -3998,6 +4008,11 @@
       "sha512": ""
     },
     "CheckInn.Repositories/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CheckInn.Services/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

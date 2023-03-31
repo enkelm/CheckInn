@@ -2,18 +2,18 @@
   "version": 3,
   "targets": {
     "net7.0": {
-      "Autofac/6.4.0": {
+      "Autofac/7.0.0": {
         "type": "package",
         "dependencies": {
           "System.Diagnostics.DiagnosticSource": "4.7.1"
         },
         "compile": {
-          "lib/net6.0/Autofac.dll": {
+          "lib/net7.0/Autofac.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net6.0/Autofac.dll": {
+          "lib/net7.0/Autofac.dll": {
             "related": ".xml"
           }
         }
@@ -4104,25 +4104,38 @@
         "runtime": {
           "bin/placeholder/CheckInn.Repositories.dll": {}
         }
+      },
+      "CheckInn.Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "CheckInn.Repositories": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/CheckInn.Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CheckInn.Services.dll": {}
+        }
       }
     }
   },
   "libraries": {
-    "Autofac/6.4.0": {
-      "sha512": "tkFxl6wAPuwVhrlN8wuNADnd+k2tv4ReP7ZZSL0vjfcN0RcfC9v25ogxK6b03HC7D4NwWjSLf1G/zTG8Bw43wQ==",
+    "Autofac/7.0.0": {
+      "sha512": "phR/GEk5h2kQWbMl70cZzCW5ysGxmz2ClaX5CuTw9qc3wtdDu3l9GAhWiWmZLltCytEIxIw98NtAraiOxazqLg==",
       "type": "package",
-      "path": "autofac/6.4.0",
+      "path": "autofac/7.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "README.md",
-        "autofac.6.4.0.nupkg.sha512",
+        "autofac.7.0.0.nupkg.sha512",
         "autofac.nuspec",
         "icon.png",
-        "lib/net5.0/Autofac.dll",
-        "lib/net5.0/Autofac.xml",
         "lib/net6.0/Autofac.dll",
         "lib/net6.0/Autofac.xml",
+        "lib/net7.0/Autofac.dll",
+        "lib/net7.0/Autofac.xml",
         "lib/netstandard2.0/Autofac.dll",
         "lib/netstandard2.0/Autofac.xml",
         "lib/netstandard2.1/Autofac.dll",
@@ -11712,15 +11725,22 @@
       "type": "project",
       "path": "../CheckInn.Repositories/CheckInn.Repositories.csproj",
       "msbuildProject": "../CheckInn.Repositories/CheckInn.Repositories.csproj"
+    },
+    "CheckInn.Services/1.0.0": {
+      "type": "project",
+      "path": "../CheckInn.Services/CheckInn.Services.csproj",
+      "msbuildProject": "../CheckInn.Services/CheckInn.Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
       "AutoMapper >= 12.0.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.0",
+      "Autofac >= 7.0.0",
       "Autofac.Extensions.DependencyInjection >= 8.0.0",
       "CheckInn.Entities >= 1.0.0",
       "CheckInn.Repositories >= 1.0.0",
+      "CheckInn.Services >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 7.0.4",
       "Microsoft.EntityFrameworkCore >= 7.0.4",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.4",
@@ -11764,6 +11784,9 @@
             },
             "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Repositories\\CheckInn.Repositories.csproj": {
               "projectPath": "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Repositories\\CheckInn.Repositories.csproj"
+            },
+            "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Services\\CheckInn.Services.csproj": {
+              "projectPath": "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Services\\CheckInn.Services.csproj"
             }
           }
         }
@@ -11785,6 +11808,10 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": {
             "target": "Package",
             "version": "[12.0.0, )"
+          },
+          "Autofac": {
+            "target": "Package",
+            "version": "[7.0.0, )"
           },
           "Autofac.Extensions.DependencyInjection": {
             "target": "Package",

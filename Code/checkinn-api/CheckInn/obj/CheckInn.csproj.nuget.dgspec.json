@@ -142,6 +142,65 @@
         }
       }
     },
+    "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Services\\CheckInn.Services.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Services\\CheckInn.Services.csproj",
+        "projectName": "CheckInn.Services",
+        "projectPath": "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Services\\CheckInn.Services.csproj",
+        "packagesPath": "C:\\Users\\Ritech\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Services\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Ritech\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Repositories\\CheckInn.Repositories.csproj": {
+                "projectPath": "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Repositories\\CheckInn.Repositories.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn\\CheckInn.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -171,6 +230,9 @@
               },
               "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Repositories\\CheckInn.Repositories.csproj": {
                 "projectPath": "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Repositories\\CheckInn.Repositories.csproj"
+              },
+              "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Services\\CheckInn.Services.csproj": {
+                "projectPath": "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Services\\CheckInn.Services.csproj"
               }
             }
           }
@@ -192,6 +254,10 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[12.0.0, )"
+            },
+            "Autofac": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             },
             "Autofac.Extensions.DependencyInjection": {
               "target": "Package",
