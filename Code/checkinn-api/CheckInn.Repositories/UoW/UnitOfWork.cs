@@ -18,7 +18,7 @@ public class UnitOfWork : IUnitOfWork
     
     public TRepository GetRepository<TRepository>() where TRepository : class
     {
-        return _container.Resolve<TRepository>();
+        return _container.ResolveOptional<TRepository>();
     }
 
     public bool Save()

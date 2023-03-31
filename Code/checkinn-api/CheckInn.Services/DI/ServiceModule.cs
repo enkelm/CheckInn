@@ -13,6 +13,7 @@ public class ServiceModule : Module
 
         builder.RegisterAssemblyTypes(dataAccess)
             .Where(t => t.Name.EndsWith("Service"))
-            .AsImplementedInterfaces();
+            .AsImplementedInterfaces()
+            .InstancePerLifetimeScope();
     }
 }

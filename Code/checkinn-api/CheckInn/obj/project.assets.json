@@ -11753,19 +11753,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Ritech\\.nuget\\packages\\": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn\\CheckInn.csproj",
+      "projectUniqueName": "C:\\Users\\User\\RiderProjects\\CheckInn\\Code\\checkinn-api\\CheckInn\\CheckInn.csproj",
       "projectName": "CheckInn",
-      "projectPath": "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn\\CheckInn.csproj",
-      "packagesPath": "C:\\Users\\Ritech\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn\\obj\\",
+      "projectPath": "C:\\Users\\User\\RiderProjects\\CheckInn\\Code\\checkinn-api\\CheckInn\\CheckInn.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\User\\RiderProjects\\CheckInn\\Code\\checkinn-api\\CheckInn\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Ritech\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -11779,14 +11779,14 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Entities\\CheckInn.Entities.csproj": {
-              "projectPath": "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Entities\\CheckInn.Entities.csproj"
+            "C:\\Users\\User\\RiderProjects\\CheckInn\\Code\\checkinn-api\\CheckInn.Entities\\CheckInn.Entities.csproj": {
+              "projectPath": "C:\\Users\\User\\RiderProjects\\CheckInn\\Code\\checkinn-api\\CheckInn.Entities\\CheckInn.Entities.csproj"
             },
-            "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Repositories\\CheckInn.Repositories.csproj": {
-              "projectPath": "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Repositories\\CheckInn.Repositories.csproj"
+            "C:\\Users\\User\\RiderProjects\\CheckInn\\Code\\checkinn-api\\CheckInn.Repositories\\CheckInn.Repositories.csproj": {
+              "projectPath": "C:\\Users\\User\\RiderProjects\\CheckInn\\Code\\checkinn-api\\CheckInn.Repositories\\CheckInn.Repositories.csproj"
             },
-            "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Services\\CheckInn.Services.csproj": {
-              "projectPath": "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Services\\CheckInn.Services.csproj"
+            "C:\\Users\\User\\RiderProjects\\CheckInn\\Code\\checkinn-api\\CheckInn.Services\\CheckInn.Services.csproj": {
+              "projectPath": "C:\\Users\\User\\RiderProjects\\CheckInn\\Code\\checkinn-api\\CheckInn.Services\\CheckInn.Services.csproj"
             }
           }
         }

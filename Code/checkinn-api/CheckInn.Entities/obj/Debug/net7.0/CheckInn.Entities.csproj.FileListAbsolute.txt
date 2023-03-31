@@ -34,3 +34,15 @@ C:\Users\Ritech\Projects\School\SWE\CheckInn\Code\checkinn-api\CheckInn.Entities
 C:\Users\Ritech\Projects\School\SWE\CheckInn\Code\checkinn-api\CheckInn.Entities\obj\Debug\net7.0\refint\CheckInn.Entities.dll
 C:\Users\Ritech\Projects\School\SWE\CheckInn\Code\checkinn-api\CheckInn.Entities\obj\Debug\net7.0\CheckInn.Entities.pdb
 C:\Users\Ritech\Projects\School\SWE\CheckInn\Code\checkinn-api\CheckInn.Entities\obj\Debug\net7.0\ref\CheckInn.Entities.dll
+C:\Users\User\RiderProjects\CheckInn\Code\checkinn-api\CheckInn.Entities\bin\Debug\net7.0\CheckInn.Entities.deps.json
+C:\Users\User\RiderProjects\CheckInn\Code\checkinn-api\CheckInn.Entities\bin\Debug\net7.0\CheckInn.Entities.dll
+C:\Users\User\RiderProjects\CheckInn\Code\checkinn-api\CheckInn.Entities\bin\Debug\net7.0\CheckInn.Entities.pdb
+C:\Users\User\RiderProjects\CheckInn\Code\checkinn-api\CheckInn.Entities\obj\Debug\net7.0\CheckInn.Entities.csproj.AssemblyReference.cache
+C:\Users\User\RiderProjects\CheckInn\Code\checkinn-api\CheckInn.Entities\obj\Debug\net7.0\CheckInn.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\RiderProjects\CheckInn\Code\checkinn-api\CheckInn.Entities\obj\Debug\net7.0\CheckInn.Entities.AssemblyInfoInputs.cache
+C:\Users\User\RiderProjects\CheckInn\Code\checkinn-api\CheckInn.Entities\obj\Debug\net7.0\CheckInn.Entities.AssemblyInfo.cs
+C:\Users\User\RiderProjects\CheckInn\Code\checkinn-api\CheckInn.Entities\obj\Debug\net7.0\CheckInn.Entities.csproj.CoreCompileInputs.cache
+C:\Users\User\RiderProjects\CheckInn\Code\checkinn-api\CheckInn.Entities\obj\Debug\net7.0\CheckInn.Entities.dll
+C:\Users\User\RiderProjects\CheckInn\Code\checkinn-api\CheckInn.Entities\obj\Debug\net7.0\refint\CheckInn.Entities.dll
+C:\Users\User\RiderProjects\CheckInn\Code\checkinn-api\CheckInn.Entities\obj\Debug\net7.0\CheckInn.Entities.pdb
+C:\Users\User\RiderProjects\CheckInn\Code\checkinn-api\CheckInn.Entities\obj\Debug\net7.0\ref\CheckInn.Entities.dll

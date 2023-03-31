@@ -14,14 +14,13 @@ public class HotelService : BaseService, IHotelService
     private readonly IUnitOfWork _unitOfWork;
     private readonly ILogger<HotelService> _logger;
     private readonly IMapper _mapper;
-    private readonly IHotelRepository _hotelRepository;
+    private IHotelRepository _hotelRepository => _unitOfWork.GetRepository<IHotelRepository>();
 
     public HotelService(IUnitOfWork unitOfWork, ILogger<HotelService> logger, IMapper mapper) : base(unitOfWork, logger)
     {
         _unitOfWork = unitOfWork;
         _logger = logger;
         _mapper = mapper;
-        _hotelRepository = _unitOfWork.GetRepository<HotelRepository>();
     }
 
 

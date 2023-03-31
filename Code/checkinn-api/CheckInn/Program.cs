@@ -1,83 +1,29 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using CheckInn;
 using CheckInn.Repositories.DI;
 using CheckInn.Services.DI;
-using Entities;
-using Entities.DTOs.Config;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
-using Serilog;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
-builder.Host.UseSerilog((ctx, lc) =>
+namespace CheckInn;
+public class Program
 {
-    lc.MinimumLevel.Debug().WriteTo.Console();
-});
-
-builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
-    .ConfigureContainer<ContainerBuilder>(builder =>
+    public static void Main(string[] args)
     {
-        builder.RegisterModule<ServiceModule>();
-        builder.RegisterModule<RepositoryModule>();
-    });
+        CreateHostBuilder(args).Build().Run();
+    }
 
-builder.Services.AddDbContext<ApiDbContext>(options => 
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultSQLConnection")));
-
-builder.Services.AddAutoMapper(typeof(MappingConfig));
-
-builder.Services.AddControllers();
-
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-    {
-        Description = @"JWT Authorization header using the Bearer scheme.
-                            Enter 'Bearer' [space] and then your token in the text input below.
-                            Example: 'Bearer 1234Sabcdef'",
-        Name = "Authorization",
-        In = ParameterLocation.Header,
-        Type = SecuritySchemeType.ApiKey,
-        Scheme = "Bearer"
-    });
-
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement()
-    {
-        {
-            new OpenApiSecurityScheme
+    private static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .UseServiceProviderFactory(new AutofacServiceProviderFactory())
+            .ConfigureContainer<ContainerBuilder>(builder =>
             {
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.SecurityScheme,
-                    Id = "Bearer"
-                },
-                Scheme = "0auth2",
-                Name = "Bearer",
-                In = ParameterLocation.Header
-            },
-            new List<string>()
-        }
-    });
-});
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
+                builder.RegisterModule(new RepositoryModule());
+                builder.RegisterModule(new ServiceModule());
+            })
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+            });
 }
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();

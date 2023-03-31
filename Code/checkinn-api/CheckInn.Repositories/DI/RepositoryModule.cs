@@ -9,12 +9,13 @@ public class RepositoryModule : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
-        base.Load(builder);
         var dataAccess = Assembly.GetExecutingAssembly();
 
         builder.RegisterAssemblyTypes(dataAccess)
             .Where(t => t.Name.EndsWith("Repository"))
-            .AsImplementedInterfaces();
+            .AsImplementedInterfaces()
+            .InstancePerLifetimeScope();
+        
         builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
     }
 }
