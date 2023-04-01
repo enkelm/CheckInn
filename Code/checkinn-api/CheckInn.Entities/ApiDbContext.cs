@@ -1,9 +1,11 @@
+using Entities.Configurations;
 using Entities.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Entities;
 
-public class ApiDbContext : DbContext
+public class ApiDbContext : IdentityDbContext<User>
 {
     public ApiDbContext(DbContextOptions<ApiDbContext> options) : base(options)
     {
@@ -13,6 +15,8 @@ public class ApiDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+        
         modelBuilder.Entity<Hotel>().HasData(
             new Hotel()
             {
@@ -25,5 +29,7 @@ public class ApiDbContext : DbContext
                 CreatedDate = DateTime.Now
             }
         );
+
+        modelBuilder.ApplyConfiguration(new RoleConfiguration());
     }
 }

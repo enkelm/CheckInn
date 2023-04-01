@@ -1,12 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
 using CheckInn.Repositories.Interfaces;
 using CheckInn.Services.Hotels;
 using Entities.DTOs;
 using Entities.Entities;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,8 +22,6 @@ namespace CheckInn.Controllers
         private readonly ILogger<HotelController> _logger;
         private readonly IHotelService _hotelService;
         
-
-
         public HotelController(IHotelService hotelService, ILogger<HotelController> logger)
         {
             _hotelService = hotelService;
@@ -42,6 +43,7 @@ namespace CheckInn.Controllers
         }
 
         [HttpPut]
+        [Authorize(Policy = "ManagerAndAbove")]
         public async Task<ActionResult<bool>> Update(UpdateHotelDTO request)
         {
             try

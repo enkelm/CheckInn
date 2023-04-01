@@ -1,6 +1,12 @@
+using System.Text;
 using Entities;
 using Entities.DTOs.Config;
+using Entities.Entities;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
 
@@ -24,6 +30,46 @@ public class Startup
         services.AddDbContext<ApiDbContext>(options =>
         {
             options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));
+        });
+        
+        // IdentityCore
+        // services.AddIdentity<IdentityUser, IdentityRole>()
+        //     .AddEntityFrameworkStores<ApiDbContext>()
+        //     .AddDefaultTokenProviders();
+        var identity = services.AddIdentity<User, IdentityRole>(options => options.User.RequireUniqueEmail = true);
+        identity = new IdentityBuilder(identity.UserType, typeof(IdentityRole), services);
+        identity.AddEntityFrameworkStores<ApiDbContext>().AddDefaultTokenProviders();
+        
+        //Config JWT
+        var key = Environment.GetEnvironmentVariable("KEY");
+        
+        services.AddAuthentication(o =>
+            {
+                o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(o =>
+            {
+                o.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidIssuer = _configuration["Jwt:Issuer"],
+                    ValidAudience = _configuration["Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)),
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = false,
+                    ValidateIssuerSigningKey = true,
+                };
+            });
+
+        // Set up Authorization Policies
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy("SuperAdminOnly", policy => policy.RequireRole("SuperAdmin"));
+            options.AddPolicy("AdminsOnly", policy => policy.RequireRole("SuperAdmin, Admin"));
+            options.AddPolicy("ManagerAndAbove", policy => policy.RequireRole("SuperAdmin, Admin, Manager"));
+            options.AddPolicy("ClientsAndAbove", policy => policy.RequireRole("SuperAdmin, Admin, Manager, Client"));
+            options.AddPolicy("GuestsAndAbove", policy => policy.RequireRole("SuperAdmin, Admin, Manager, Client, Guest"));
         });
 
         // Register Serilog
@@ -77,6 +123,8 @@ public class Startup
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
+        app.UseCors(cpb => cpb.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+        
         // Configure the app here
         if (env.IsDevelopment())
         {
@@ -86,6 +134,7 @@ public class Startup
 
         app.UseRouting();
 
+        app.UseAuthentication();
         app.UseAuthorization();
 
         app.UseEndpoints(endpoints =>
