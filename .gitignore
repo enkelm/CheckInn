@@ -1,16 +1,37 @@
-# Default ignored files
-/Code/checkinn-api/.idea/.idea.CheckInn/.idea/shelf/
-/Code/checkinn-api/.idea/.idea.CheckInn/.idea/workspace.xml
-# Rider ignored files
-/Code/checkinn-api/.idea/.idea.CheckInn/.idea/contentModel.xml
-/Code/checkinn-api/.idea/.idea.CheckInn/.idea/modules.xml
-/Code/checkinn-api/.idea/.idea.CheckInn/.idea/projectSettingsUpdater.xml
-/Code/checkinn-api/.idea/.idea.CheckInn/.idea/.idea.CheckInn.iml
-# Editor-based HTTP Client requests
-/Code/checkinn-api/.idea/.idea.CheckInn/.idea/httpRequests/
-# Datasource local storage ignored files
-/Code/checkinn-api/.idea/.idea.CheckInn/.idea/dataSources/
-/Code/checkinn-api/.idea/.idea.CheckInn/.idea/dataSources.local.xml
+# Common IntelliJ Platform excludes
+
+# User specific
+**/.idea/**/workspace.xml
+**/.idea/**/tasks.xml
+**/.idea/shelf/*
+**/.idea/dictionaries
+**/.idea/httpRequests/
+
+# Sensitive or high-churn files
+**/.idea/**/dataSources/
+**/.idea/**/dataSources.ids
+**/.idea/**/dataSources.xml
+**/.idea/**/dataSources.local.xml
+**/.idea/**/sqlDataSources.xml
+**/.idea/**/dynamic.xml
+
+# Rider
+# Rider auto-generates .iml files, and contentModel.xml
+**/.idea/**/*.iml
+**/.idea/**/contentModel.xml
+**/.idea/**/modules.xml
+
+*.suo
+*.user
+.vs/
+[Bb]in/
+[Oo]bj/
+_UpgradeReport_Files/
+[Pp]ackages/
+
+Thumbs.db
+Desktop.ini
+.DS_Store
 
 
 # From .NET Core 3.0 you can use the command: `dotnet new gitignore` to generate a customizable .gitignore file
