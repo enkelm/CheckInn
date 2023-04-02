@@ -21,6 +21,11 @@ public class UnitOfWork : IUnitOfWork
         return _container.ResolveOptional<TRepository>();
     }
 
+    public TService GetService<TService>() where TService : class
+    {
+        return _container.ResolveOptional<TService>();
+    }
+
     public bool Save()
     {
         return _context.SaveChanges() > 0;

@@ -166,7 +166,7 @@ namespace Entities.Migrations
                 values: new object[,]
                 {
                     { "03146f83-815e-4c17-a53b-d6d184c1ea7e", null, "Admin", "ADMIN" },
-                    { "7fd4f950-3161-4132-8272-8e206e19b6d9", null, "SuperAdmin", "SUPER-ADMIN" },
+                    { "7fd4f950-3161-4132-8272-8e206e19b6d9", null, "SuperAdmin", "SUPERADMIN" },
                     { "c83b665f-fc23-482c-8924-19a5798f35b4", null, "Guest", "GUEST" },
                     { "cbad4936-906c-4539-8f11-40d8b63164ce", null, "Client", "CLIENT" },
                     { "d1f2666e-11e6-4cd4-a544-c3f71786b219", null, "Manager", "MANAGER" }

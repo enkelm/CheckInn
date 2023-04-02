@@ -175,7 +175,7 @@ namespace Entities.Migrations
                         {
                             Id = "7fd4f950-3161-4132-8272-8e206e19b6d9",
                             Name = "SuperAdmin",
-                            NormalizedName = "SUPER-ADMIN"
+                            NormalizedName = "SUPERADMIN"
                         },
                         new
                         {
