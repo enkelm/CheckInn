@@ -19,9 +19,9 @@ namespace CheckInn.Controllers
     [ApiController]
     public class HotelController : ControllerBase
     {
-        private readonly ILogger<HotelController> _logger;
         private readonly IHotelService _hotelService;
-        
+        private readonly ILogger<HotelController> _logger;
+
         public HotelController(IHotelService hotelService, ILogger<HotelController> logger)
         {
             _hotelService = hotelService;
@@ -29,7 +29,7 @@ namespace CheckInn.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<HotelDTO>>> GetAll()
+        public async Task<ActionResult<IEnumerable<HotelDTO>>> GetHotels()
         {
             try
             {
@@ -38,6 +38,36 @@ namespace CheckInn.Controllers
             catch (Exception e)
             {
                 _logger.LogError(e,"Failed to get all hotels!");
+                return BadRequest();
+            }
+        }
+        
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult<IEnumerable<HotelDTO>>> GetHotel([FromRoute] long id)
+        {
+            try
+            {
+                return Ok(await _hotelService.GetHotel(id));
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e,"Failed to get all hotels!");
+                return BadRequest();
+            }
+        }
+        
+        [HttpPost]
+        [Authorize(Policy = "AdminsOnly")]
+        public async Task<ActionResult<HotelDTO>> Create([FromBody] CreateHotelDTO hotelDto)
+        {
+            try
+            {
+                return Ok(await _hotelService.Create(hotelDto));
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Failed to create hotel!");
                 return BadRequest();
             }
         }
@@ -53,6 +83,22 @@ namespace CheckInn.Controllers
             catch (Exception e)
             {
                 _logger.LogError(e, "Failed to update hotel!");
+                return BadRequest();
+            }
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        [Authorize(Policy = "AdminsOnly")]
+        public async Task<ActionResult<bool>> Delete([FromRoute] long id)
+        {
+            try
+            {
+                return Ok(await _hotelService.Delete(id));
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Failed to delete hotel!");
                 return BadRequest();
             }
         }

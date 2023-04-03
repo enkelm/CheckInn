@@ -30,9 +30,22 @@ public class HotelService : BaseService, IHotelService
         return _mapper.Map<IEnumerable<Hotel>, List<HotelDTO>>(hotels);
     }
 
-    public Task<HotelDTO> GetHotel(long id)
+    public async Task<HotelDTO> GetHotel(long id)
     {
-        throw new NotImplementedException();
+        var hotel = await _hotelRepository.GetById(id);
+        return _mapper.Map<Hotel, HotelDTO>(hotel);
+    }
+
+    public async Task<HotelDTO> Create(CreateHotelDTO hotelDto)
+    {
+        var hotel = _mapper.Map<CreateHotelDTO, Hotel>(hotelDto);
+        var result = _hotelRepository.Add(hotel);
+        
+        var isSaved = await _unitOfWork.SaveAsync();
+
+        if (!isSaved) throw new Exception("Data Not Saved!");
+
+        return _mapper.Map<Hotel, HotelDTO>(result);
     }
 
     public async Task<bool> Update(UpdateHotelDTO hotelDto)
@@ -40,6 +53,12 @@ public class HotelService : BaseService, IHotelService
         var hotel = _mapper.Map<UpdateHotelDTO, Hotel>(hotelDto);
 
         _hotelRepository.Update(hotel);
+        return await _unitOfWork.SaveAsync();
+    }
+
+    public async Task<bool> Delete(long id)
+    {
+        await _hotelRepository.Remove(id);
         return await _unitOfWork.SaveAsync();
     }
 }
