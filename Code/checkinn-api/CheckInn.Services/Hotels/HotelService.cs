@@ -4,6 +4,8 @@ using CheckInn.Repositories.Repos;
 using CheckInn.Repositories.UoW;
 using CheckInn.Services.Base;
 using Entities.DTOs;
+using Entities.DTOs.Amenities;
+using Entities.DTOs.DTOs.Room;
 using Entities.Entities;
 using Microsoft.Extensions.Logging;
 
@@ -26,13 +28,27 @@ public class HotelService : BaseService, IHotelService
 
     public async Task<IEnumerable<HotelDTO>> GetHotels()
     {
-        var hotels = await _hotelRepository.GetAllAsync();
+        var hotels = await _hotelRepository.GetAllAsync(new[]
+        { 
+            new Dictionary<string, string?[]>
+            {
+                { "HotelAmenities", null },
+                { "Rooms", new[] {"RoomAmenities"} }
+            }
+        });
         return _mapper.Map<IEnumerable<Hotel>, List<HotelDTO>>(hotels);
     }
 
     public async Task<HotelDTO> GetHotel(long id)
     {
-        var hotel = await _hotelRepository.GetById(id);
+        var hotel = await _hotelRepository.GetById(x => x.Id == id, new []
+        {
+            new Dictionary<string, string?[]>
+            {
+                { "HotelAmenities", null },
+                { "Rooms", new[] {"RoomAmenities"} }
+            }
+        });
         return _mapper.Map<Hotel, HotelDTO>(hotel);
     }
 
@@ -40,7 +56,7 @@ public class HotelService : BaseService, IHotelService
     {
         var hotel = _mapper.Map<CreateHotelDTO, Hotel>(hotelDto);
         var result = _hotelRepository.Add(hotel);
-        
+
         var isSaved = await _unitOfWork.SaveAsync();
 
         if (!isSaved) throw new Exception("Data Not Saved!");

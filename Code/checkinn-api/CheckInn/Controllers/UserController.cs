@@ -49,16 +49,13 @@ namespace CheckInn.Controllers
             
             try
             {
-                var response = await _userService.Login(userDto);
-
-                if (response.Equals(new LoginResponseDTO())) return Unauthorized();
-
-                return Accepted(response);
+                return Accepted(await _userService.Login(userDto));
 
             }
             catch (Exception e)
             {
                 _logger.LogError(e, "Login Failed!");
+                if(e.Message == "Wrong Credentials!") return Unauthorized();
                 return BadRequest();
             }
         }

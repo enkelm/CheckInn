@@ -7,6 +7,8 @@ using AutoMapper;
 using CheckInn.Repositories.Interfaces;
 using CheckInn.Services.Hotels;
 using Entities.DTOs;
+using Entities.DTOs.Amenities;
+using Entities.DTOs.DTOs.Room;
 using Entities.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -58,7 +60,6 @@ namespace CheckInn.Controllers
         }
         
         [HttpPost]
-        [Authorize(Policy = "AdminsOnly")]
         public async Task<ActionResult<HotelDTO>> Create([FromBody] CreateHotelDTO hotelDto)
         {
             try
@@ -74,7 +75,7 @@ namespace CheckInn.Controllers
 
         [HttpPut]
         [Authorize(Policy = "ManagerAndAbove")]
-        public async Task<ActionResult<bool>> Update(UpdateHotelDTO request)
+        public async Task<ActionResult<bool>> Update([FromBody]UpdateHotelDTO request)
         {
             try
             {

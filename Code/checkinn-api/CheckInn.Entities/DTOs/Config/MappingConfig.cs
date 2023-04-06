@@ -1,4 +1,7 @@
 using AutoMapper;
+using Entities.DTOs.Amenities;
+using Entities.DTOs.DTOs.Room;
+using Entities.DTOs.DTOs.Room.Amenities;
 using Entities.DTOs.DTOs.User;
 using Entities.Entities;
 
@@ -11,6 +14,18 @@ public class MappingConfig : Profile
         CreateMap<Hotel, HotelDTO>().ReverseMap();
         CreateMap<Hotel, CreateHotelDTO>().ReverseMap();
         CreateMap<Hotel, UpdateHotelDTO>().ReverseMap();
+
+        CreateMap<HotelAmenities, HotelAmenitiesDTO>().ReverseMap();
+        CreateMap<HotelAmenities, CreateHotelAmenitiesDTO>().ReverseMap();
+        CreateMap<HotelAmenities, UpdateHotelAmenitiesDTO>().ReverseMap();
+
+        CreateMap<Room, RoomDTO>().ReverseMap();
+        CreateMap<Room, CreateRoomDTO>().ReverseMap();
+        CreateMap<Room, UpdateRoomDTO>().ReverseMap();
+
+        CreateMap<RoomAmenities, RoomAmenitiesDTO>().ReverseMap();
+        CreateMap<RoomAmenities, CreateRoomAmenitiesDTO>().ReverseMap();
+        CreateMap<RoomAmenities, UpdateRoomAmenitiesDTO>().ReverseMap();
 
         CreateMap<User, UserDTO>().ReverseMap();
         CreateMap<User, LoginUserDTO>().ReverseMap();

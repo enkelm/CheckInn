@@ -47,12 +47,9 @@ public class UserService : IUserService
 
     public async Task<LoginResponseDTO> Login(LoginUserDTO userDto)
     {
-        if (!await _authService.ValidateUser(userDto))
-        {
-            return new LoginResponseDTO();
-        }
+        if (!await _authService.ValidateUser(userDto)) throw new Exception("Wrong Credentials!"); 
 
-        var user = await _userManager.FindByEmailAsync(userDto.Email);
+            var user = await _userManager.FindByEmailAsync(userDto.Email);
 
         return new LoginResponseDTO
         {

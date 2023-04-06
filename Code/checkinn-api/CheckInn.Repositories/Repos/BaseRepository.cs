@@ -2,9 +2,11 @@ using System.Linq.Expressions;
 using CheckInn.Repositories.Interfaces;
 using CheckInn.Repositories.Repos.Helpers;
 using Entities;
+using Entities.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace CheckInn.Repositories.Repos;
+
 
 public class BaseRepository<T, TKey> : IBaseRepository<T, TKey> where T : class
 {
@@ -21,10 +23,78 @@ public class BaseRepository<T, TKey> : IBaseRepository<T, TKey> where T : class
     {
         return await _context.FindAsync(id);
     }
+    
+    public async Task<T> GetById(Expression<Func<T, bool>> predicate, string[] includes)
+    {
+        IQueryable<T> query = _context;
+        
+        foreach (var include in includes)
+        {
+            query.Include(include);
+        }
+        
+        return await query.FirstOrDefaultAsync(predicate);
+    }
+
+    public async Task<T> GetById(Expression<Func<T, bool>> predicate, IEnumerable<IDictionary<string, string?[]>> includes)
+    {
+        IQueryable<T> query = _context; 
+        
+        foreach (var include in includes)
+        {
+            foreach (var (includeArg, thenIncludeArgs) in include)
+            {
+                query = query.Include(includeArg);
+                if (thenIncludeArgs is { Length: > 0 })
+                {
+                    foreach (var thenIncludeArg in thenIncludeArgs)
+                    {
+                        query = query.Include(includeArg + "." + thenIncludeArg);
+                    }
+                }
+            }
+        }
+        
+        return await query.FirstOrDefaultAsync(predicate);
+    }
 
     public async Task<IEnumerable<T>> GetAllAsync()
     {
         return await _context.ToListAsync();
+    }
+
+    public async Task<IEnumerable<T>> GetAllAsync(string[] includes)
+    {
+        IQueryable<T> query = _context;
+        
+        foreach (var include in includes)
+        {
+            query.Include(include);
+        }
+        
+        return await query.ToListAsync();
+    }
+
+    public async Task<IEnumerable<T>> GetAllAsync(IEnumerable<IDictionary<string, string?[]>> includes)
+    {
+        IQueryable<T> query = _context; 
+        
+        foreach (var include in includes)
+        {
+            foreach (var (includeArg, thenIncludeArgs) in include)
+            {
+                query = query.Include(includeArg);
+                if (thenIncludeArgs is { Length: > 0 })
+                {
+                    foreach (var thenIncludeArg in thenIncludeArgs)
+                    {
+                        query = query.Include(includeArg + "." + thenIncludeArg);
+                    }
+                }
+            }
+        }
+        
+        return await query.ToListAsync();
     }
 
     public PagedResult<T> GetPaged(int page, int pageSize, Expression<Func<T, bool>> predicate = null, string[] includes = null)

@@ -3415,19 +3415,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {}
+    "C:\\Users\\Ritech\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\RiderProjects\\CheckInn\\Code\\checkinn-api\\CheckInn.Entities\\CheckInn.Entities.csproj",
+      "projectUniqueName": "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Entities\\CheckInn.Entities.csproj",
       "projectName": "CheckInn.Entities",
-      "projectPath": "C:\\Users\\User\\RiderProjects\\CheckInn\\Code\\checkinn-api\\CheckInn.Entities\\CheckInn.Entities.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\RiderProjects\\CheckInn\\Code\\checkinn-api\\CheckInn.Entities\\obj\\",
+      "projectPath": "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Entities\\CheckInn.Entities.csproj",
+      "packagesPath": "C:\\Users\\Ritech\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Entities\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Ritech\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
