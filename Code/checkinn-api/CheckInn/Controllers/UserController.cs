@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CheckInn.Services.Users;
 using Entities.DTOs.DTOs.User;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,6 +30,22 @@ namespace CheckInn.Controllers
             try
             {
                 return await _userService.Register(userDto);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Registration Failed!");
+                return BadRequest();
+            }
+        }
+        
+        [HttpPost]
+        [Route("register-super_admin")]
+        [Authorize(Policy = "SuperAdminOnly")]
+        public async Task<ActionResult<bool>> RegisterSuperAdmin([FromBody] UserDTO userDto)
+        {
+            try
+            {
+                return await _userService.RegisterAdmin(userDto);
             }
             catch (Exception e)
             {

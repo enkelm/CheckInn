@@ -29,6 +29,29 @@ public class UserService : IUserService
         var user = _mapper.Map<User>(userDto);
         user.UserName = userDto.Email;
 
+        if (userDto.Roles.Any(x => x == "SuperAdmin"))
+            throw new ArgumentException();
+
+            var result = await _userManager.CreateAsync(user, userDto.Password);
+
+        if (!result.Succeeded)
+        {
+            foreach (var error in result.Errors)
+            {
+                _logger.LogError(error.Code);
+            }
+            return false;
+        }
+
+        await _userManager.AddToRolesAsync(user, userDto.Roles);
+        
+        return true;
+    }
+    public async Task<bool> RegisterAdmin(UserDTO userDto)
+    {
+        var user = _mapper.Map<User>(userDto);
+        user.UserName = userDto.Email;
+
         var result = await _userManager.CreateAsync(user, userDto.Password);
 
         if (!result.Succeeded)

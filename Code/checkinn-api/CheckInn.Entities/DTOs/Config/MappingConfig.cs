@@ -1,5 +1,6 @@
 using AutoMapper;
 using Entities.DTOs.Amenities;
+using Entities.DTOs.DTOs.Reservation;
 using Entities.DTOs.DTOs.Room;
 using Entities.DTOs.DTOs.Room.Amenities;
 using Entities.DTOs.DTOs.User;
@@ -29,5 +30,9 @@ public class MappingConfig : Profile
 
         CreateMap<User, UserDTO>().ReverseMap();
         CreateMap<User, LoginUserDTO>().ReverseMap();
+
+        CreateMap<Reservations, ReservationDTO>().ReverseMap();
+        CreateMap<Reservations, CreateReservationDTO>().ReverseMap();
+        CreateMap<Reservations, UpdateReservationDTO>().ReverseMap();
     }
 }
