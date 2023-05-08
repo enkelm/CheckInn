@@ -1,5 +1,5 @@
-import React, { CSSProperties, FC } from "react";
-import styles from "./Input.module.css";
+import React, { CSSProperties, FC } from 'react';
+import styles from './Input.module.css';
 
 interface InputProps {
   style?: CSSProperties;
