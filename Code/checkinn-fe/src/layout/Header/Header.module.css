@@ -1,0 +1,131 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  background-color: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbarLogo {
+  height: 2rem;
+}
+
+.searchBar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 1rem;
+  border: 1px solid var(--grey);
+  border-radius: 2rem;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%);
+}
+
+.searchBar:hover {
+  box-shadow: 0 1px 2px rgb(0 0 0 / 10%), 0 4px 12px rgb(0 0 0 / 8%);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.searchBar__text {
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-right: 1px solid var(--grey);
+  padding-right: 0.5rem;
+}
+
+.searchBar__text2 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--dfont-grey);
+  padding-right: 0.5rem;
+}
+
+.searchBar__iconDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--theme);
+  padding: 0.15rem;
+  border-radius: 50%;
+  color: var(--white);
+}
+
+.profileContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.listYourself {
+  padding: 1rem;
+  font-weight: 600;
+  border-radius: 2rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.listYourself:hover {
+  background-color: var(--light-grey);
+}
+
+.profileMenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--font-grey);
+  border: 1px solid var(--grey);
+  padding: 0.5rem;
+  border-radius: 2rem;
+}
+
+.menuItems {
+  padding: 0.5rem 1rem !important;
+  font-size: 0.8rem;
+  color: var(--font-grey);
+}
+
+.bottomNav {
+  display: none;
+}
+
+.mobileSearchBar {
+  display: none;
+}
+
+@media only screen and (max-width: 800px) {
+  .searchBar,
+  .listYourself {
+    display: none;
+  }
+
+  .navbar {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .profileMenu {
+    position: fixed;
+    top: 0.5rem;
+    right: 1.5rem;
+  }
+
+  .bottomNav {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-top: 1px solid var(--grey);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%);
+  }
+
+  .mobileSearchBar {
+    display: block;
+  }
+}

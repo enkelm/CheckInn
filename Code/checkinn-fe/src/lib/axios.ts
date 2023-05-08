@@ -1,5 +1,12 @@
 import axios, { AxiosResponse } from 'axios';
 
+export interface APIErrorResponse {
+  type: string;
+  title: string;
+  status: number;
+  traceId: string;
+}
+
 const BASE_URL = 'https://localhost:44313/api/';
 
 export const ENDPOINTS = {
@@ -9,11 +16,11 @@ export const ENDPOINTS = {
 };
 
 interface CreateEnpointReturn {
-  fetchAll: () => Promise<AxiosResponse<any, any>>;
-  fetchById: (id: number | string) => Promise<AxiosResponse<any, any>>;
-  create: (newRecord: any) => Promise<AxiosResponse<any, any>>;
-  update: (id: number | string, updatedRecord: any) => Promise<AxiosResponse<any, any>>;
-  delete: (id: number | string) => Promise<AxiosResponse<any, any>>;
+  fetchAll: () => Promise<AxiosResponse>;
+  fetchById: (id: number | string) => Promise<AxiosResponse>;
+  create: (newRecord: unknown) => Promise<AxiosResponse>;
+  update: (id: number | string, updatedRecord: unknown) => Promise<AxiosResponse>;
+  delete: (id: number | string) => Promise<AxiosResponse>;
 }
 
 export const createApiEndpoint = (endpoint: string, method?: string): CreateEnpointReturn => {
@@ -23,7 +30,7 @@ export const createApiEndpoint = (endpoint: string, method?: string): CreateEnpo
   axios.defaults.headers.delete['Authorization'] = `Bearer ${JWT}`;
   axios.defaults.headers.put['Authorization'] = `Bearer ${JWT}`;
 
-  let url = BASE_URL + endpoint + '/' + method + '/';
+  const url = BASE_URL + endpoint + '/' + method + '/';
 
   return {
     fetchAll: () => axios.get(url),

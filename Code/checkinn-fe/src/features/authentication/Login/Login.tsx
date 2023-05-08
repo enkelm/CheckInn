@@ -1,29 +1,33 @@
-import React, { FC, FormEventHandler } from 'react'
-import { useDispatch } from 'react-redux'
-import Card from '../../../components/UI/Card/Card'
-import { uiActions } from '../../../store/ui-slice'
+import React, { useState, FC, FormEventHandler } from 'react';
+import Card from '../../../components/UI/Card/Card';
+import { uiActions } from '../../../store/ui-slice';
+import { loginThunk } from '../../../store/user-slice';
+import { useAppDispatch } from '../../../hooks/hooks';
 
 // interface LoginProps {}
 
 const Login: FC = () => {
-  const dispatch = useDispatch()
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const dispatch = useAppDispatch();
 
-  const clickHandler = () => {
-    console.log('hello')
-  }
+  const onSubmitHandler: FormEventHandler<HTMLFormElement> = async (event) => {
+    event.preventDefault();
 
-  const onSubmitHandler: FormEventHandler<HTMLFormElement> = (event) => {
-    event.preventDefault()
-    dispatch(uiActions.toggleModal())
-  }
+    dispatch(loginThunk({ email, password }));
+
+    dispatch(uiActions.toggleModal());
+  };
 
   return (
     <Card style={{ width: '30vw' }}>
       <form onSubmit={onSubmitHandler}>
-        <button onClick={clickHandler}>Click Me</button>
+        <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
+        <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
+        <button type='submit'>Login</button>
       </form>
     </Card>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
