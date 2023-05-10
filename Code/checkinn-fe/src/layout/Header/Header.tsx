@@ -6,6 +6,7 @@ import LanguageIcon from '@mui/icons-material/Language';
 import ProfileMenu from './ProfileMenu';
 import CustomBottomNavigation from './BottomNav';
 import MobileSearchBar from './MobileSearchBar';
+import Login from '../../features/authentication/Login/Login';
 
 const Header = () => {
   return (
@@ -28,6 +29,7 @@ const Header = () => {
         </div>
         <div className={styles.profileDiv}>
           <ProfileMenu />
+          <Login />
         </div>
       </div>
       <MobileSearchBar />

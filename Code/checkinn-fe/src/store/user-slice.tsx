@@ -37,9 +37,6 @@ const userSlice = createSlice({
       state.role = role;
       state.userId = userId;
     });
-    // builder.addCase(loginThunk.rejected, (state, action: PayloadAction<APIErrorResponse>) => {
-    //   state = initialState;
-    // });
   },
 });
 
