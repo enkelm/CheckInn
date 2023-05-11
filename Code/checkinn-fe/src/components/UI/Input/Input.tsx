@@ -7,8 +7,10 @@ interface InputProps {
   children?: ReactNode;
   label?: string;
   helperText?: ReactNode;
+  errorHelperText?: ReactNode;
   style?: CSSProperties;
   type: HTMLInputTypeAttribute | undefined;
+  name?: string | undefined;
   size?: OverridableStringUnion<'small' | 'medium', TextFieldPropsSizeOverrides> | undefined;
   startAdornment?: ReactNode;
   endAdornment?: ReactNode;
@@ -28,8 +30,10 @@ const Input: FC<InputProps> = ({
   children,
   label,
   helperText,
+  errorHelperText,
   style,
   type,
+  name,
   startAdornment,
   endAdornment,
   value,
@@ -51,14 +55,15 @@ const Input: FC<InputProps> = ({
   return (
     <TextField
       type={type}
+      name={name}
       multiline={multiline}
       required={required}
       disabled={disabled}
-      focused={focused}
       error={error}
+      focused={focused}
       variant='outlined'
       label={label}
-      helperText={helperText}
+      helperText={error ? errorHelperText : helperText}
       style={style}
       className={styles.passwordInput}
       select={select}
