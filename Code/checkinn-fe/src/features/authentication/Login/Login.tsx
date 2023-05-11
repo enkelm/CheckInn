@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { toggleAlert } from '../../../store/ui-slice';
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
-import LoginForm from '../../../components/forms/LoginForm';
+import LoginForm from '../../../components/forms/Login/LoginForm';
 import CModal from '../../../components/UI/Modal/Modal';
 
 const Login: FC = () => {
@@ -10,6 +10,7 @@ const Login: FC = () => {
 
   return (
     <CModal
+      type='loginModal'
       onClose={() => {
         alertIsVisible && dispatch(toggleAlert());
       }}

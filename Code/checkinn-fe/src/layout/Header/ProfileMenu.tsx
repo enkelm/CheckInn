@@ -64,7 +64,12 @@ const ProfileMenu = () => {
           </MenuItem>
         ) : (
           [
-            <MenuItem key={0} className={styles.menuItems} onClick={handleClose}>
+            <MenuItem
+              key={0}
+              className={styles.menuItems}
+              onClick={handleClose}
+              onClickCapture={() => dispatch(toggleModal('signupModal'))}
+            >
               Signup
             </MenuItem>,
 
@@ -72,7 +77,7 @@ const ProfileMenu = () => {
               key={1}
               className={styles.menuItems}
               onClick={handleClose}
-              onClickCapture={() => dispatch(toggleModal())}
+              onClickCapture={() => dispatch(toggleModal('loginModal'))}
             >
               Login
             </MenuItem>,

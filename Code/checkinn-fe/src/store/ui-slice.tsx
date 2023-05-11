@@ -1,14 +1,20 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { ModalTypes } from '../components/UI/Modal/Modal';
 
 interface UIState {
-  modalIsVisible: boolean;
+  modalIsVisible: ModalStates;
   loading: boolean;
   alert: boolean;
   toast: boolean;
 }
 
+interface ModalStates {
+  loginModal: boolean;
+  signupModal: boolean;
+}
+
 const initialState: UIState = {
-  modalIsVisible: false,
+  modalIsVisible: { loginModal: false, signupModal: false },
   loading: false,
   alert: false,
   toast: false,
@@ -18,8 +24,9 @@ const uiSlice = createSlice({
   name: 'ui',
   initialState: initialState,
   reducers: {
-    toggleModal(state) {
-      state.modalIsVisible = !state.modalIsVisible;
+    toggleModal(state, action: PayloadAction<ModalTypes>) {
+      action.type += `/${action.payload}`;
+      state.modalIsVisible[action.payload] = !state.modalIsVisible[action.payload];
     },
     toggleLoading(state) {
       state.loading = !state.loading;

@@ -5,11 +5,14 @@ import { toggleModal } from '../../../store/ui-slice';
 
 interface ModalProps {
   children: ReactElement<unknown, string | JSXElementConstructor<unknown>>;
+  type: ModalTypes;
   onClose?: ((event: object, reason: 'backdropClick' | 'escapeKeyDown') => void) | undefined;
 }
 
-const CModal: FC<ModalProps> = ({ children, onClose }) => {
-  const modalIsVisible = useAppSelector((state) => state.ui.modalIsVisible);
+export type ModalTypes = 'loginModal' | 'signupModal';
+
+const CModal: FC<ModalProps> = ({ children, type, onClose }) => {
+  const modalIsVisible = useAppSelector((state) => state.ui.modalIsVisible[type]);
   const dispatch = useAppDispatch();
 
   return (
@@ -17,7 +20,7 @@ const CModal: FC<ModalProps> = ({ children, onClose }) => {
       open={modalIsVisible}
       onClose={(event, reason) => {
         onClose && onClose(event, reason);
-        dispatch(toggleModal());
+        dispatch(toggleModal(type));
       }}
     >
       {children}

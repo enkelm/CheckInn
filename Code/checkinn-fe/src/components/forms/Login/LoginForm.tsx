@@ -5,14 +5,14 @@ import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
 import EmailIcon from '@mui/icons-material/Email';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import CCard from '../UI/Card/Card';
-import Input from '../UI/Input/Input';
-import CButton from '../UI/Button/Button';
+import CCard from '../../UI/Card/Card';
+import Input from '../../UI/Input/Input';
+import CButton from '../../UI/Button/Button';
 import styles from './LoginForm.module.css';
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { loginThunk } from '../../store/user-slice';
-import CAlert from '../UI/Alerts/Alert';
-import { toggleAlert } from '../../store/ui-slice';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
+import { loginThunk } from '../../../store/user-slice';
+import CAlert from '../../UI/Alerts/Alert';
+import { toggleAlert } from '../../../store/ui-slice';
 
 const LoginForm = forwardRef(function LoginForm() {
   const [email, setEmail] = useState('');

@@ -18,6 +18,7 @@ interface InputProps {
   onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined;
   multiline?: boolean;
   required?: boolean;
+  initialFocus?: boolean;
   disabled?: boolean;
   error?: boolean;
   select?: boolean;
@@ -38,11 +39,12 @@ const Input: FC<InputProps> = ({
   size = 'small',
   multiline = false,
   required = false,
+  initialFocus = false,
   disabled = false,
   select = false,
   error = false,
 }) => {
-  const [focused, setFocused] = useState(false);
+  const [focused, setFocused] = useState(initialFocus);
 
   const onFocusHandler = () => setFocused((focus) => !focus);
 

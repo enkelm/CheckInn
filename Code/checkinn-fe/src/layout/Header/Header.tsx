@@ -7,6 +7,7 @@ import ProfileMenu from './ProfileMenu';
 import CustomBottomNavigation from './BottomNav';
 import MobileSearchBar from './MobileSearchBar';
 import Login from '../../features/authentication/Login/Login';
+import Register from '../../features/authentication/Register/Register';
 
 const Header = () => {
   return (
@@ -30,6 +31,7 @@ const Header = () => {
         <div className={styles.profileDiv}>
           <ProfileMenu />
           <Login />
+          <Register />
         </div>
       </div>
       <MobileSearchBar />

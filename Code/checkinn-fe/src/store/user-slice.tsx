@@ -36,7 +36,7 @@ export const loginThunk = createAsyncThunk<UserState, LoginCredentials>(
     const user = await login(email, password, { dispatch });
 
     !user && dispatch(toggleAlert());
-    user && dispatch(toggleModal());
+    user && dispatch(toggleModal('loginModal'));
 
     user && localStorage.setItem('USER', JSON.stringify(user));
     return user;
