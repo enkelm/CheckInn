@@ -1,7 +1,9 @@
-import React, { Children, FC } from 'react';
-import Button, { ButtonPropsVariantOverrides } from '@mui/material/Button';
+import React, { FC } from 'react';
+import { ButtonPropsVariantOverrides } from '@mui/material/Button';
 import type { OverridableStringUnion } from '@mui/types/index';
-import styles from './Button.module.css';
+import { useAppSelector } from '../../../hooks/hooks';
+import { LoadingButton } from '@mui/lab';
+// import styles from './Button.module.css';
 
 interface CButtonProps {
   children?: React.ReactNode;
@@ -9,6 +11,8 @@ interface CButtonProps {
   variant?: OverridableStringUnion<'text' | 'contained' | 'outlined', ButtonPropsVariantOverrides>;
   disabled?: boolean;
   href?: string;
+  startIcon?: React.ReactNode;
+  endIcon?: React.ReactNode;
   onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
@@ -18,12 +22,25 @@ const CButton: FC<CButtonProps> = ({
   variant = 'contained',
   disabled,
   href,
+  startIcon,
+  endIcon,
   onClick,
 }) => {
+  const isLoading = useAppSelector((state) => state.ui.loading);
+
   return (
-    <Button type={type} variant={variant} disabled={disabled} href={href} onClick={onClick}>
+    <LoadingButton
+      type={type}
+      variant={variant}
+      disabled={disabled}
+      loading={isLoading}
+      href={href}
+      startIcon={startIcon}
+      endIcon={endIcon}
+      onClick={onClick}
+    >
       {children}
-    </Button>
+    </LoadingButton>
   );
 };
 

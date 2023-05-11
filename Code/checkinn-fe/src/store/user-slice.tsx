@@ -1,11 +1,12 @@
 import { PayloadAction, createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { login } from '../data/authentication';
+import { toggleAlert, toggleModal } from './ui-slice';
 // import { APIErrorResponse } from '../lib/axios';
 
 export interface UserState {
-  token: string | null;
-  role: string | null;
-  userId: number | null;
+  token: string | null | undefined;
+  role: string | null | undefined;
+  userId: number | null | undefined;
 }
 
 interface LoginCredentials {
@@ -13,33 +14,56 @@ interface LoginCredentials {
   password: string;
 }
 
-const initialState: UserState = {
-  token: null,
-  role: null,
-  userId: null,
-};
+const initialState: UserState = getInitialState();
+
+function getInitialState() {
+  const storedUser = localStorage.getItem('USER');
+
+  let initialState = {
+    token: null,
+    role: null,
+    userId: null,
+  };
+
+  if (storedUser) initialState = JSON.parse(storedUser);
+
+  return initialState;
+}
 
 export const loginThunk = createAsyncThunk<UserState, LoginCredentials>(
   'user/login',
-  async ({ email, password }) => {
-    return await login(email, password);
+  async ({ email, password }, { dispatch }) => {
+    const user = await login(email, password, { dispatch });
+
+    !user && dispatch(toggleAlert());
+    user && dispatch(toggleModal());
+
+    user && localStorage.setItem('USER', JSON.stringify(user));
+    return user;
   },
 );
 
 const userSlice = createSlice({
   name: 'user',
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    loggedInUser(state, action: PayloadAction<UserState | undefined>) {
+      const payload = action.payload;
+      state.token = payload?.token;
+      state.role = payload?.role;
+      state.userId = payload?.userId;
+    },
+  },
   extraReducers: (builder) => {
-    builder.addCase(loginThunk.fulfilled, (state, action: PayloadAction<UserState>) => {
-      const { token, role, userId } = action.payload;
-      state.token = token;
-      state.role = role;
-      state.userId = userId;
+    builder.addCase(loginThunk.fulfilled, (state, action: PayloadAction<UserState | undefined>) => {
+      const payload = action.payload;
+      state.token = payload?.token;
+      state.role = payload?.role;
+      state.userId = payload?.userId;
     });
   },
 });
 
-export const userActions = userSlice.actions;
+export const { loggedInUser } = userSlice.actions;
 
 export default userSlice;

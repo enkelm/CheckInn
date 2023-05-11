@@ -15,7 +15,6 @@ const Filter: FC<FilterProps> = ({ selectedFilter, setSelectedFilter }) => {
           key={i}
           className={`${styles.linksBox} ${i == selectedFilter && styles.selectedBox}`}
           onClick={() => {
-            console.log('selecting key', i);
             setSelectedFilter(i);
           }}
         >

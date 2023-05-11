@@ -6,11 +6,16 @@ interface CardProps {
   style?: CSSProperties;
   className?: string;
   children?: ReactNode;
+  ref?:
+    | ((instance: HTMLDivElement | null) => void)
+    | React.RefObject<HTMLDivElement>
+    | null
+    | undefined;
 }
 
-const CCard: FC<CardProps> = ({ style, className, children }) => {
+const CCard: FC<CardProps> = ({ style, className, children, ref }) => {
   return (
-    <Card style={style} className={`${styles.card} ${className ? className : ''}`}>
+    <Card ref={ref} style={style} className={`${styles.card} ${className ? className : ''}`}>
       {children}
     </Card>
   );
