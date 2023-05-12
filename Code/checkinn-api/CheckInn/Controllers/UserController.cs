@@ -25,7 +25,7 @@ namespace CheckInn.Controllers
 
         [HttpPost]
         [Route("register")]
-        public async Task<ActionResult<bool>> Register([FromBody] UserDTO userDto)
+        public async Task<ActionResult<bool>> Register([FromForm] UserDTO userDto)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace CheckInn.Controllers
         [HttpPost]
         [Route("register-super_admin")]
         [Authorize(Policy = "SuperAdminOnly")]
-        public async Task<ActionResult<bool>> RegisterSuperAdmin([FromBody] UserDTO userDto)
+        public async Task<ActionResult<bool>> RegisterSuperAdmin([FromForm] UserDTO userDto)
         {
             try
             {

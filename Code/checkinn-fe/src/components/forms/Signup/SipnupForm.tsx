@@ -9,6 +9,9 @@ import CCard from '../../UI/Card/Card';
 import Input from '../../UI/Input/Input';
 import { MuiTelInput, matchIsValidTel } from 'mui-tel-input';
 import CButton from '../../UI/Button/Button';
+import { signup } from '../../../data/authentication';
+import { useAppDispatch } from '../../../hooks/hooks';
+import CAlert from '../../UI/Alerts/Alert';
 
 const initialForm = {
   firstName: '',
@@ -41,13 +44,14 @@ const SignupForm = forwardRef(function SignupForm() {
   const [showEmailIcon, setShowEmailIcon] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [disableButton, setDisableButton] = useState(true);
+  const dispatch = useAppDispatch();
 
   function validationFormEntry(property: string) {
-    return Object.entries(formValidation).find(([key, value]) => key === property)?.[1];
+    return Object.entries(formValidation).find(([key]) => key === property)?.[1];
   }
 
   useEffect(() => {
-    const formIsFilled = Object.entries(form).every(([key, value]) => value !== '');
+    const formIsFilled = Object.entries(form).every(([, value]) => value !== '');
     const formIsValid = Object.entries(initialValidation).every(
       ([key, value]) => value === validationFormEntry(key),
     );
@@ -55,18 +59,24 @@ const SignupForm = forwardRef(function SignupForm() {
     submitableForm ? setDisableButton(false) : setDisableButton(true);
   }, [formValidation]);
 
-  const submitHandler: React.FormEventHandler<HTMLFormElement> = (event) => {
+  const submitHandler: React.FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    console.log(formData);
+    formData.append('roles', 'Client');
+    const res = await signup(formData, { dispatch });
+    console.log(res);
   };
 
   return (
     <CCard className={styles.card}>
       <form onSubmit={submitHandler} className={styles.form}>
         <h1>Sign Up</h1>
+        <CAlert severity='error' title='Error' variant='filled'>
+          An error has occured while signing up
+        </CAlert>
         <div className={styles.flexRow}>
           <Input
+            style={{ width: '45%' }}
             label='First Name'
             name='firstName'
             type='text'
@@ -81,6 +91,7 @@ const SignupForm = forwardRef(function SignupForm() {
             }}
           />
           <Input
+            style={{ width: '45%' }}
             label='Last Name'
             name='lastName'
             type='text'
@@ -108,7 +119,7 @@ const SignupForm = forwardRef(function SignupForm() {
               return prevState && { ...prevState, email: e.target.value };
             })
           }
-          onFocus={() => !form?.email && setShowEmailIcon((show) => !show)}
+          onFocus={() => form?.email && setShowEmailIcon((show) => !show)}
           onBlur={(e) => {
             const isValid = regex.email.test(e.target.value);
             setFormValidation((state) => state && { ...state, emailInvalid: !isValid });

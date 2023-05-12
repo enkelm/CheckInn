@@ -1,7 +1,6 @@
 import { PayloadAction, createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { login } from '../data/authentication';
-import { toggleAlert, toggleModal } from './ui-slice';
-// import { APIErrorResponse } from '../lib/axios';
+import { toggleModal } from './ui-slice';
 
 export interface UserState {
   token: string | null | undefined;
@@ -35,10 +34,9 @@ export const loginThunk = createAsyncThunk<UserState, LoginCredentials>(
   async ({ email, password }, { dispatch }) => {
     const user = await login(email, password, { dispatch });
 
-    !user && dispatch(toggleAlert());
-    user && dispatch(toggleModal('loginModal'));
-
+    user?.token && dispatch(toggleModal('loginModal'));
     user && localStorage.setItem('USER', JSON.stringify(user));
+
     return user;
   },
 );

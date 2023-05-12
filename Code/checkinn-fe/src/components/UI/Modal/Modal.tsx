@@ -1,7 +1,7 @@
 import { Modal } from '@mui/material';
 import React, { FC, JSXElementConstructor, ReactElement } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
-import { toggleModal } from '../../../store/ui-slice';
+import { toggleAlert, toggleModal } from '../../../store/ui-slice';
 
 interface ModalProps {
   children: ReactElement<unknown, string | JSXElementConstructor<unknown>>;
@@ -13,6 +13,7 @@ export type ModalTypes = 'loginModal' | 'signupModal';
 
 const CModal: FC<ModalProps> = ({ children, type, onClose }) => {
   const modalIsVisible = useAppSelector((state) => state.ui.modalIsVisible[type]);
+  const alertIsVisible = useAppSelector((state) => state.ui.alert);
   const dispatch = useAppDispatch();
 
   return (
@@ -20,6 +21,7 @@ const CModal: FC<ModalProps> = ({ children, type, onClose }) => {
       open={modalIsVisible}
       onClose={(event, reason) => {
         onClose && onClose(event, reason);
+        alertIsVisible && dispatch(toggleAlert());
         dispatch(toggleModal(type));
       }}
     >

@@ -18,6 +18,18 @@
 .flexRow {
   display: flex;
   flex-direction: row;
-  gap: 2rem;
+  justify-content: space-between;
   width: 90%;
+}
+
+@media (min-width: 800px) {
+  .card {
+    min-width: 30vw;
+  }
+}
+
+@media (max-width: 500px) {
+  .card {
+    min-width: 70vw;
+  }
 }

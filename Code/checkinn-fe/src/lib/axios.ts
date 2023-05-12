@@ -10,8 +10,8 @@ export interface APIErrorResponse {
 const BASE_URL = 'https://localhost:44313/api/';
 
 export const ENDPOINTS = {
-  HOTEL: 'Hotel/',
-  RESERVATION: 'Reservation/',
+  HOTEL: 'Hotel',
+  RESERVATION: 'Reservation',
   USER: 'User',
 };
 
@@ -35,7 +35,7 @@ export const createApiEndpoint = (endpoint: string, method?: string): CreateEnpo
   axios.defaults.headers.delete['Authorization'] = `Bearer ${token}`;
   axios.defaults.headers.put['Authorization'] = `Bearer ${token}`;
 
-  const url = BASE_URL + endpoint + '/' + method + '/';
+  const url = method ? `${BASE_URL + endpoint}/${method}/` : `${BASE_URL + endpoint}`;
 
   return {
     fetchAll: (cancelToken) => axios.get(url, { cancelToken: cancelToken?.token }),
