@@ -16,6 +16,7 @@ import {
   flexBetween,
 } from '../../assests/common-styles';
 import CButton from '../../components/UI/Button/Button';
+import './ListingCard.css';
 
 interface ListingCardProps {
   location: {
