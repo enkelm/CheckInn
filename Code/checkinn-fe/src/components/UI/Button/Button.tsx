@@ -1,14 +1,17 @@
 import React, { FC } from 'react';
-import { ButtonPropsVariantOverrides } from '@mui/material/Button';
-import type { OverridableStringUnion } from '@mui/types/index';
-import { useAppSelector } from '../../../hooks/hooks';
+import { ButtonPropsVariantOverrides, ButtonPropsSizeOverrides } from '@mui/material/Button';
 import { LoadingButton } from '@mui/lab';
-// import styles from './Button.module.css';
+import type { OverridableStringUnion } from '@mui/types/index';
+import type { SxProps } from '@mui/system/styleFunctionSx';
+import type { Theme } from '@mui/material/styles/createTheme';
+import { useAppSelector } from '../../../hooks/hooks';
 
 interface CButtonProps {
   children?: React.ReactNode;
+  sx?: SxProps<Theme> | undefined;
   type?: 'button' | 'submit' | 'reset' | undefined;
   variant?: OverridableStringUnion<'text' | 'contained' | 'outlined', ButtonPropsVariantOverrides>;
+  size?: OverridableStringUnion<'small' | 'medium' | 'large', ButtonPropsSizeOverrides>;
   disabled?: boolean;
   href?: string;
   startIcon?: React.ReactNode;
@@ -18,9 +21,11 @@ interface CButtonProps {
 
 const CButton: FC<CButtonProps> = ({
   children,
+  sx,
   type = 'button',
   variant = 'contained',
   disabled,
+  size,
   href,
   startIcon,
   endIcon,
@@ -30,8 +35,10 @@ const CButton: FC<CButtonProps> = ({
 
   return (
     <LoadingButton
+      sx={sx}
       type={type}
       variant={variant}
+      size={size}
       disabled={disabled}
       loading={isLoading}
       href={href}

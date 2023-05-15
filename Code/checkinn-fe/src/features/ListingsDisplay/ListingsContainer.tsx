@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import ListingCard from './ListingCard';
 import { getListingsThunk } from '../../store/listings-slice';
+import { Box, Grid } from '@mui/material';
+import { locations } from '../../data/mock-data';
 
 const ListingsContainer = () => {
   const listings = useAppSelector((state) => state.listings);
@@ -18,11 +20,15 @@ const ListingsContainer = () => {
   }, []);
 
   return (
-    <>
-      {listings.map((listing, key) => (
-        <ListingCard key={key} listing={listing} />
-      ))}
-    </>
+    <Box sx={{ mx: 2 }}>
+      <Grid container rowSpacing={3} columnSpacing={3}>
+        {locations.map((listing, key) => (
+          <Grid key={listing.id} item xs={12} sm={4} md={4} lg={3}>
+            <ListingCard key={key} location={listing} />
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 };
 
