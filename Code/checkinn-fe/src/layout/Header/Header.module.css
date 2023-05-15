@@ -109,11 +109,11 @@
     padding-right: 1.5rem;
   }
 
-  .profileMenu {
+  /* .profileMenu {
     position: fixed;
     top: 0.5rem;
     right: 1.5rem;
-  }
+  } */
 
   .bottomNav {
     display: block;
@@ -126,6 +126,8 @@
   }
 
   .mobileSearchBar {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

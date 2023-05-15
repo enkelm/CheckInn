@@ -5,19 +5,13 @@ import { getListingsThunk } from '../../store/listings-slice';
 
 const ListingsContainer = () => {
   const listings = useAppSelector((state) => state.listings);
+  // const [isFulfilled, setIsFulfilled] = useState(false);
   const dispatch = useAppDispatch();
 
   let cleanUp = false;
   useEffect(() => {
-    console.log('start', cleanUp);
-    (async () => {
-      if (!cleanUp) {
-        const action = await dispatch(getListingsThunk());
-        return action;
-      }
-    })().then((res) => res?.meta.requestStatus === 'fulfilled');
+    cleanUp && dispatch(getListingsThunk());
 
-    // return cleanUpFunction(isFullilled, controllBool);
     return () => {
       cleanUp = true;
     };
@@ -28,7 +22,6 @@ const ListingsContainer = () => {
       {listings.map((listing, key) => (
         <ListingCard key={key} listing={listing} />
       ))}
-      {'bruh'}
     </>
   );
 };

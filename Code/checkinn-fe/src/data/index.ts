@@ -1,9 +1,14 @@
 import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
 import { CancelTokenSource } from 'axios';
+import {
+  AnyAsyncThunk,
+  RejectedWithValueActionFromAsyncThunk,
+} from '@reduxjs/toolkit/dist/matchers';
 
 export interface ReqConfig {
   cancelToken?: CancelTokenSource;
   dispatch?: ThunkDispatch<unknown, unknown, AnyAction>;
+  rejectWithValue?: (value: unknown) => RejectedWithValueActionFromAsyncThunk<AnyAsyncThunk>;
 }
 
 export interface Listing {

@@ -14,3 +14,9 @@
   align-items: center;
   gap: 1rem;
 }
+
+@media (max-width: 800px) {
+  .card {
+    min-width: 70vw;
+  }
+}

@@ -23,6 +23,8 @@ const Header = () => {
         </div>
       </div>
 
+      <MobileSearchBar />
+
       <div className={styles.profileContainer}>
         <div className={styles.listYourself}>List your property</div>
         <div className={styles.listYourself}>
@@ -34,7 +36,6 @@ const Header = () => {
           <Register />
         </div>
       </div>
-      <MobileSearchBar />
       <CustomBottomNavigation />
     </div>
   );

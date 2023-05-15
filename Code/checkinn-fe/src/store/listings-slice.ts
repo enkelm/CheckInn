@@ -1,13 +1,14 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getAllListings } from '../data/listings';
 import { Listing } from '../data';
+import { CancelTokenSource } from 'axios';
 
 const initialState: Listing[] | undefined = [];
 
-export const getListingsThunk = createAsyncThunk<Listing[]>(
+export const getListingsThunk = createAsyncThunk<Listing[], CancelTokenSource | undefined>(
   'listings/getAllAsync',
-  async (params, { dispatch }) => {
-    return await getAllListings({ dispatch });
+  async (cancelToken, { dispatch, rejectWithValue }) => {
+    return await getAllListings({ cancelToken, dispatch, rejectWithValue });
   },
 );
 
@@ -25,17 +26,15 @@ const listingSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(
-      getListingsThunk.fulfilled,
-      (state, action: PayloadAction<Listing[] | undefined>) => {
-        if (!action?.payload) return;
-        const { payload } = action;
+    builder.addCase(getListingsThunk.fulfilled, (state, action: PayloadAction<Listing[]>) => {
+      if (!action?.payload) return;
+      const { payload } = action;
+      Array.isArray(payload) &&
         payload.forEach((item) => {
           const listingExists = state.find((listing) => item.id === listing.id);
           !listingExists && state.push(item);
         });
-      },
-    );
+    });
   },
 });
 
