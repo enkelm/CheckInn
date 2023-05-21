@@ -20,19 +20,6 @@ public interface IBaseRepository<T, TKey> where T : class
      * Retrieves a single entity from the database that matches the specified filter
      * criteria and includes related entities in the result if specified.
      * </summary>
-     * <param name="predicate">The predicate which determines the search parameter</param>
-     * <param name="includes">An array of strings representing the names of the related entities to include in the query result.</param>
-     * <returns>
-     * A <see cref="Task"/> which represents the asynchronous operation,
-     * containing a generic value which represent the found entity
-     * </returns>
-     */
-    Task<T> GetById(Expression<Func<T, bool>> predicate, string[] includes);
-    /**
-     * <summary>
-     * Retrieves a single entity from the database that matches the specified filter
-     * criteria and includes related entities in the result if specified.
-     * </summary>
      * <param name="predicate">An expression that represents the filter criteria for the entity.</param>
      * <param name="includes">An enumerable of dictionaries representing the names of the related entities to include in the query result.</param>
      * <returns>
@@ -40,7 +27,7 @@ public interface IBaseRepository<T, TKey> where T : class
      * containing a generic value which represent the found entity
      * </returns>
      */
-    Task<T> GetById(Expression<Func<T, bool>> predicate, IEnumerable<IDictionary<string, string?[]>> includes);
+    Task<T> GetById(Expression<Func<T, bool>> predicate, Dictionary<string, string[]?> includes);
     /**
      * <summary>
      * Retrieves all entities of type <typeparamref name="T"/> from the database asynchronously.
@@ -51,21 +38,13 @@ public interface IBaseRepository<T, TKey> where T : class
     Task<IEnumerable<T>> GetAllAsync();
     /**
      * <summary>
-     * Retrieves all entities of type <typeparamref name="T"/> from the database asynchronously, and includes related entities in the result if specified.
-     * </summary>
-     * <param name="includes">An array of strings representing the names of the related entities to include in the query result.</param>
-     * <returns>A task representing the asynchronous operation of retrieving all entities of type <typeparamref name="T"/> from the database.</returns>
-     */
-    Task<IEnumerable<T>> GetAllAsync(string[] includes);
-    /**
-     * <summary>
      * Retrieves all entities of type <typeparamref name="T"/> from the database
      * asynchronously, and includes related entities in the result if specified.
      * </summary>
      * <param name="includes">An enumerable of dictionaries representing the names of the related entities and their child entities to include in the query result.</param>
      * <returns>A task representing the asynchronous operation of retrieving all entities of type <typeparamref name="T"/> from the database.</returns>
      */
-    Task<IEnumerable<T>> GetAllAsync(IEnumerable<IDictionary<string, string?[]>> includes);
+    Task<IEnumerable<T>> GetAllAsync(IDictionary<string, string[]?> includes);
     /**
      * <summary>
      * Retrieves a page of entities of type <typeparamref name="T"/> from the database,
@@ -79,17 +58,17 @@ public interface IBaseRepository<T, TKey> where T : class
      * and additional metadata.</returns>
      */
     PagedResult<T> GetPaged(int page, int pageSize, Expression<Func<T, bool>>? predicate = null,
-        string[] includes = null);
+        IDictionary<string, string[]?>? includes = null);
     /**
      * <summary>
      * Retrieves a collection of entities of type <typeparamref name="T"/> from the database based on the specified filter, and optionally includes related entities in the result.
      * </summary>
      * <param name="predicate">A filter expression to apply to the query.</param>
      * <param name="includes">Optional. An array of strings representing the names of the related entities to include in the query result.</param>
-     * <param name="NoTracking">Optional. A flag that specifies whether to retrieve the entities with or without tracking changes.</param>
+     * <param name="noTracking">Optional. A flag that specifies whether to retrieve the entities with or without tracking changes.</param>
      * <returns>An <see cref="IEnumerable{T}"/> of entities that satisfy the filter expression.</returns>
      */
-    IEnumerable<T> Find(Expression<Func<T, bool>> predicate, string[]? includes = null, bool NoTracking = false);
+    IEnumerable<T> Find(Expression<Func<T, bool>> predicate, string[]? includes = null, bool noTracking = false);
     /**
      * <summary>
      * Executes a query against the database and returns an <see cref="IEnumerable{T}"/> of entities of type <typeparamref name="T"/>.

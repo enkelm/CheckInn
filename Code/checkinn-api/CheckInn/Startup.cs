@@ -3,9 +3,9 @@ using Entities;
 using Entities.DTOs.Config;
 using Entities.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
@@ -133,6 +133,12 @@ public class Startup
         }
 
         app.UseRouting();
+        
+        app.UseStaticFiles(new StaticFileOptions
+        {
+            FileProvider = new PhysicalFileProvider(Path.Combine(env.WebRootPath, "Files\\images")),
+            RequestPath = "/images"
+        });
 
         app.UseAuthentication();
         app.UseAuthorization();

@@ -1,11 +1,37 @@
 {
   "Version": 1,
-  "Hash": "2CqMcJcbNQ26x+n01uhxgPMOxieHMddcREEFXB6vyEs=",
+  "Hash": "v+bm54RWY+XFrClv2DGVRdvMOCfCViTDkHi0I9SJ54w=",
   "Source": "CheckInn",
   "BasePath": "_content/CheckInn",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "CheckInn\\wwwroot",
+      "Source": "CheckInn",
+      "ContentRoot": "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn\\wwwroot\\",
+      "BasePath": "_content/CheckInn",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn\\wwwroot\\Files\\images\\test.png",
+      "SourceId": "CheckInn",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn\\wwwroot\\",
+      "BasePath": "_content/CheckInn",
+      "RelativePath": "Files/images/test.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Files\\images\\test.png"
+    }
+  ]
 }

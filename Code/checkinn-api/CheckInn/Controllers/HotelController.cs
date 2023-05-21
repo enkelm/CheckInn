@@ -40,7 +40,7 @@ namespace CheckInn.Controllers
             catch (Exception e)
             {
                 _logger.LogError(e,"Failed to get all hotels!");
-                return BadRequest();
+                return BadRequest(e.Message);
             }
         }
         

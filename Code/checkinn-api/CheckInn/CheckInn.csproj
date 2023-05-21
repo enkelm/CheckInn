@@ -37,4 +37,8 @@
       <ProjectReference Include="..\CheckInn.Services\CheckInn.Services.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="wwwroot\" />
+    </ItemGroup>
+
 </Project>

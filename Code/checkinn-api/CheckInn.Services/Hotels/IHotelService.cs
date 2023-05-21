@@ -11,4 +11,6 @@ public interface IHotelService
     Task<HotelDTO> Create(CreateHotelDTO hotelDto);
     Task<bool> Update(UpdateHotelDTO hotelDto);
     Task<bool> Delete(long id);
+    Task<bool> IsHotelBooked(long id);
+    Task<bool> IsHotelBooked(Hotel hotel);
 }

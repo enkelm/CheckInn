@@ -11,14 +11,16 @@ public class RoomDTO
         {
             RoomId = Id
         };
+        Occupied = false;
     }
 
     public long Id { get; set; }
     public long HotelId { get; set; }
     public string? Description { get; set; }
     public int Occupancy { get; set; }
+    public bool Occupied { get; set; }
     public double PricePerNight { get; set; }
     public RoomType RoomType { get; set; }
-    public string ImagesUrl { get; set; }
+    public string? ImagesUrl { get; set; }
     public RoomAmenitiesDTO RoomAmenities { get; set; }
 }

@@ -23,38 +23,18 @@ public class BaseRepository<T, TKey> : IBaseRepository<T, TKey> where T : class
     {
         return await _context.FindAsync(id);
     }
-    
-    public async Task<T> GetById(Expression<Func<T, bool>> predicate, string[] includes)
+
+    public async Task<T> GetById(Expression<Func<T, bool>> predicate, Dictionary<string, string[]?> includes)
     {
         IQueryable<T> query = _context;
-        
-        foreach (var include in includes)
-        {
-            query.Include(include);
-        }
-        
-        return await query.FirstOrDefaultAsync(predicate);
-    }
 
-    public async Task<T> GetById(Expression<Func<T, bool>> predicate, IEnumerable<IDictionary<string, string?[]>> includes)
-    {
-        IQueryable<T> query = _context; 
-        
-        foreach (var include in includes)
+        foreach (var (includeArg, thenIncludeArgs) in includes)
         {
-            foreach (var (includeArg, thenIncludeArgs) in include)
-            {
-                query = query.Include(includeArg);
-                if (thenIncludeArgs is { Length: > 0 })
-                {
-                    foreach (var thenIncludeArg in thenIncludeArgs)
-                    {
-                        query = query.Include(includeArg + "." + thenIncludeArg);
-                    }
-                }
-            }
+            query = query.Include(includeArg);
+            if (thenIncludeArgs is not { Length: > 0 }) continue;
+            query = thenIncludeArgs.Aggregate(query, (current, thenIncludeArg) => current.Include(includeArg + "." + thenIncludeArg));
         }
-        
+
         return await query.FirstOrDefaultAsync(predicate);
     }
 
@@ -63,50 +43,33 @@ public class BaseRepository<T, TKey> : IBaseRepository<T, TKey> where T : class
         return await _context.ToListAsync();
     }
 
-    public async Task<IEnumerable<T>> GetAllAsync(string[] includes)
-    {
-        IQueryable<T> query = _context;
-        
-        foreach (var include in includes)
-        {
-            query.Include(include);
-        }
-        
-        return await query.ToListAsync();
-    }
-
-    public async Task<IEnumerable<T>> GetAllAsync(IEnumerable<IDictionary<string, string?[]>> includes)
+    public async Task<IEnumerable<T>> GetAllAsync(IDictionary<string, string[]?> includes)
     {
         IQueryable<T> query = _context; 
         
-        foreach (var include in includes)
+        foreach (var (includeArg, thenIncludeArgs) in includes)
         {
-            foreach (var (includeArg, thenIncludeArgs) in include)
-            {
-                query = query.Include(includeArg);
-                if (thenIncludeArgs is { Length: > 0 })
-                {
-                    foreach (var thenIncludeArg in thenIncludeArgs)
-                    {
-                        query = query.Include(includeArg + "." + thenIncludeArg);
-                    }
-                }
-            }
+            query = query.Include(includeArg);
+            if (thenIncludeArgs is not { Length: > 0 }) continue;
+            query = thenIncludeArgs.Aggregate(query, (current, thenIncludeArg) => current.Include(includeArg + "." + thenIncludeArg));
         }
-        
+
         return await query.ToListAsync();
     }
 
-    public PagedResult<T> GetPaged(int page, int pageSize, Expression<Func<T, bool>> predicate = null, string[] includes = null)
+    public PagedResult<T> GetPaged(int page, int pageSize, Expression<Func<T, bool>>? predicate = null, IDictionary<string, string[]?>? includes = null)
     {
         var result = new PagedResult<T>();
-        IQueryable<T> tempQuery = _context.Where(predicate);
-        
+        var tempQuery = _context.Where(predicate);
+
         if (includes != null)
-        {
-            tempQuery = includes.Aggregate(tempQuery, (current, item) => current.Include(item));
-        }
-        
+            foreach (var (includeArg, thenIncludeArgs) in includes)
+            {
+                tempQuery = tempQuery.Include(includeArg);
+                if (thenIncludeArgs is not { Length: > 0 }) continue;
+                tempQuery = thenIncludeArgs.Aggregate(tempQuery, (current, thenIncludeArg) => current.Include(includeArg + "." + thenIncludeArg));
+            }
+
         result.CurrentPage = page;
         result.PageSize = pageSize;
         result.RowCount = tempQuery.Count();
@@ -123,17 +86,12 @@ public class BaseRepository<T, TKey> : IBaseRepository<T, TKey> where T : class
         return result;
     }
 
-    public IEnumerable<T> Find(Expression<Func<T, bool>> predicate, string[] includes = null, bool NoTracking = false)
+    public IEnumerable<T> Find(Expression<Func<T, bool>> predicate, string[]? includes = null, bool NoTracking = false)
     {
         var query = _context.Where(predicate);
 
-        if (includes != null)
-        {
-            foreach (var item in includes)
-            {
-                query = query.Include(item);
-            }
-        }
+        if (includes == null) return (NoTracking) ? query.AsNoTracking() : query;
+        query = includes.Aggregate(query, (current, item) => current.Include(item));
         return (NoTracking) ? query.AsNoTracking() : query;
     }
 
@@ -166,7 +124,7 @@ public class BaseRepository<T, TKey> : IBaseRepository<T, TKey> where T : class
     {
         var entity = await _context.FindAsync(id);
 
-        Remove(entity);
+        if (entity != null) Remove(entity);
     }
 
     public void Remove(T entity)

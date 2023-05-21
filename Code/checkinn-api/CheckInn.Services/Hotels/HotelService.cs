@@ -1,11 +1,8 @@
 using AutoMapper;
 using CheckInn.Repositories.Interfaces;
-using CheckInn.Repositories.Repos;
 using CheckInn.Repositories.UoW;
 using CheckInn.Services.Base;
 using Entities.DTOs;
-using Entities.DTOs.Amenities;
-using Entities.DTOs.DTOs.Room;
 using Entities.Entities;
 using Microsoft.Extensions.Logging;
 
@@ -28,27 +25,22 @@ public class HotelService : BaseService, IHotelService
 
     public async Task<IEnumerable<HotelDTO>> GetHotels()
     {
-        var hotels = await _hotelRepository.GetAllAsync(new[]
-        { 
-            new Dictionary<string, string?[]>
-            {
-                { "HotelAmenities", null },
-                { "Rooms", new[] {"RoomAmenities"} }
-            }
+        var hotels = await _hotelRepository.GetAllAsync(new Dictionary<string, string[]?>
+        {
+            { "HotelAmenities", null },
+            { "Rooms", new[] {"RoomAmenities"} }
         });
         return _mapper.Map<IEnumerable<Hotel>, List<HotelDTO>>(hotels);
     }
 
     public async Task<HotelDTO> GetHotel(long id)
     {
-        var hotel = await _hotelRepository.GetById(x => x.Id == id, new []
-        {
-            new Dictionary<string, string?[]>
+        var hotel = await _hotelRepository.GetById(x => x.Id == id, new Dictionary<string, string[]?> 
             {
                 { "HotelAmenities", null },
-                { "Rooms", new[] {"RoomAmenities"} }
+                { "Rooms", new[] {"RoomAmenities"} } 
             }
-        });
+        );
         return _mapper.Map<Hotel, HotelDTO>(hotel);
     }
 
@@ -76,5 +68,26 @@ public class HotelService : BaseService, IHotelService
     {
         await _hotelRepository.Remove(id);
         return await _unitOfWork.SaveAsync();
+    }
+
+    public async Task<bool> IsHotelBooked(long id)
+    {
+        var hotel = await _hotelRepository.GetById(id);
+        return await IsHotelBooked(hotel);
+    }
+
+    public async Task<bool> IsHotelBooked(Hotel hotel)
+    {
+        if (!hotel.FullyBooked) return hotel.FullyBooked;
+        
+        var reservation = hotel.Reservations.Last();
+
+        if (reservation.EndDate >= DateTime.Now) return hotel.FullyBooked; 
+        
+        hotel.Occupied -= reservation.Rooms.Sum(x => x.Occupancy);
+        foreach (var room in reservation.Rooms) room.Occupied = false;
+
+        await _unitOfWork.SaveAsync();
+        return hotel.FullyBooked;
     }
 }

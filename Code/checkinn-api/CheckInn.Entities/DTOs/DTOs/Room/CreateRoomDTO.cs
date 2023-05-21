@@ -11,6 +11,7 @@ public class CreateRoomDTO
     public string Description { get; set; }
     [Required]
     public int Occupancy { get; set; }
+    public bool Occupied { get; set; }
     [Required]
     public double PricePerNight { get; set; }
     [Required]

@@ -23,14 +23,27 @@ public class ReservationService : BaseService, IReservationService
 
     public async Task<ReservationDTO> GetByUserId(string id)
     {
-        var reservation = await _reservationsRepository.GetById(x => x.UserId == id, new[] { "Rooms" });
+        var reservation = await _reservationsRepository.GetById(x => x.UserId == id, 
+            new Dictionary<string, string[]?> { { "Rooms", null } });
 
         return _mapper.Map<Entities.Entities.Reservations, ReservationDTO>(reservation);
     }
 
     public async Task<ReservationDTO> Create(CreateReservationDTO reservationDto)
     {
+        var hotel = await _hotelRepository.GetById(reservationDto.HotelId);
+        var existingReservation = hotel.Reservations.FirstOrDefault(x => x.EndDate <= DateTime.Now);
+
+        if (hotel.FullyBooked && existingReservation != null) throw new Exception("Listing is already booked!");
+
         var reservation = _mapper.Map<CreateReservationDTO, Entities.Entities.Reservations>(reservationDto);
+
+        foreach (var room in reservation.Rooms)
+        {
+            if (room.Occupied) throw new Exception("One of the rooms was already booked!");
+            room.Occupied = true;
+            hotel.Occupied += room.Occupancy;
+        } 
         
         
         var result = _reservationsRepository.Add(reservation);
