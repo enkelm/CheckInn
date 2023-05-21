@@ -21,6 +21,9 @@
 **/.idea/**/contentModel.xml
 **/.idea/**/modules.xml
 
+**/chekinn-api/**/bin
+**/chekinn-api/**/obj
+
 *.suo
 *.user
 .vs/
