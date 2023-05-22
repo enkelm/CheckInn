@@ -24,6 +24,11 @@
 **/chekinn-api/**/bin
 **/chekinn-api/**/obj
 
+**/wwwroot/Files/images/*.png
+**/wwwroot/Files/images/*.jpg
+**/wwwroot/Files/images/*.jpeg
+**/wwwroot/Files/images/*.gif
+
 *.suo
 *.user
 .vs/
