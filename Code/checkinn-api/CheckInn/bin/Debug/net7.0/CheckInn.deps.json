@@ -15,6 +15,7 @@
           "CheckInn.Entities": "1.0.0",
           "CheckInn.Repositories": "1.0.0",
           "CheckInn.Services": "1.0.0",
+          "CheckInn.Util": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.4",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.4",
           "Microsoft.AspNetCore.OpenApi": "7.0.4",
@@ -2751,10 +2752,16 @@
       "CheckInn.Services/1.0.0": {
         "dependencies": {
           "CheckInn.Repositories": "1.0.0",
+          "CheckInn.Util": "1.0.0",
           "Microsoft.AspNetCore.Identity": "2.2.0"
         },
         "runtime": {
           "CheckInn.Services.dll": {}
+        }
+      },
+      "CheckInn.Util/1.0.0": {
+        "runtime": {
+          "CheckInn.Util.dll": {}
         }
       }
     }
@@ -4379,6 +4386,11 @@
       "sha512": ""
     },
     "CheckInn.Services/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CheckInn.Util/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckInn.Repositories", "Ch
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckInn.Services", "CheckInn.Services\CheckInn.Services.csproj", "{36AC38C3-B03E-4B92-A456-4BC7A02C7BE1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckInn.Util", "CheckInn.Util\CheckInn.Util.csproj", "{24C48DE4-DFDA-444F-8D6D-32B2BA58D001}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{36AC38C3-B03E-4B92-A456-4BC7A02C7BE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36AC38C3-B03E-4B92-A456-4BC7A02C7BE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36AC38C3-B03E-4B92-A456-4BC7A02C7BE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24C48DE4-DFDA-444F-8D6D-32B2BA58D001}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24C48DE4-DFDA-444F-8D6D-32B2BA58D001}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24C48DE4-DFDA-444F-8D6D-32B2BA58D001}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24C48DE4-DFDA-444F-8D6D-32B2BA58D001}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{54047475-BEB7-4B2B-BE9D-841181E73315} = {3EB54BB5-2CD1-498F-8917-2736A700D326}

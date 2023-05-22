@@ -1,4 +1,6 @@
 using System.Text;
+using CheckInn.Util.AuthPolicy;
+using CheckInn.Util.WebHostEnvironment;
 using Entities;
 using Entities.DTOs.Config;
 using Entities.Entities;
@@ -33,9 +35,6 @@ public class Startup
         });
         
         // IdentityCore
-        // services.AddIdentity<IdentityUser, IdentityRole>()
-        //     .AddEntityFrameworkStores<ApiDbContext>()
-        //     .AddDefaultTokenProviders();
         var identity = services.AddIdentity<User, IdentityRole>(options => options.User.RequireUniqueEmail = true);
         identity = new IdentityBuilder(identity.UserType, typeof(IdentityRole), services);
         identity.AddEntityFrameworkStores<ApiDbContext>().AddDefaultTokenProviders();
@@ -65,11 +64,11 @@ public class Startup
         // Set up Authorization Policies
         services.AddAuthorization(options =>
         {
-            options.AddPolicy("SuperAdminOnly", policy => policy.RequireRole("SuperAdmin"));
-            options.AddPolicy("AdminsOnly", policy => policy.RequireRole("SuperAdmin, Admin"));
-            options.AddPolicy("ManagerAndAbove", policy => policy.RequireRole("SuperAdmin, Admin, Manager"));
-            options.AddPolicy("ClientsAndAbove", policy => policy.RequireRole("SuperAdmin, Admin, Manager, Client"));
-            options.AddPolicy("GuestsAndAbove", policy => policy.RequireRole("SuperAdmin, Admin, Manager, Client, Guest"));
+            options.AddPolicy(AuthPolicy.SuperAdminOnly, policy => policy.RequireRole(AuthRoles.SuperAdmin));
+            options.AddPolicy(AuthPolicy.AdminsOnly, policy => policy.RequireRole(AuthRoles.SuperAdmin, AuthRoles.Admin));
+            options.AddPolicy(AuthPolicy.ManagerAndAbove, policy => policy.RequireRole(AuthRoles.SuperAdmin, AuthRoles.Admin, AuthRoles.Manager));
+            options.AddPolicy(AuthPolicy.ClientsAndAbove, policy => policy.RequireRole(AuthRoles.SuperAdmin, AuthRoles.Admin, AuthRoles.Manager, AuthRoles.Client));
+            options.AddPolicy(AuthPolicy.GuestsAndAbove, policy => policy.RequireRole(AuthRoles.SuperAdmin, AuthRoles.Admin, AuthRoles.Manager, AuthRoles.Client, AuthRoles.Guest));
         });
 
         // Register Serilog
@@ -119,6 +118,7 @@ public class Startup
 
         // Add any other dependencies here
         // services.AddSingleton<ISomeService, SomeService>();
+        services.AddSingleton<ICheckInnWebHostEnvironment, CheckInnWebHostEnvironment>();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -4529,6 +4529,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "CheckInn.Repositories": "1.0.0",
+          "CheckInn.Util": "1.0.0",
           "Microsoft.AspNetCore.Identity": "2.2.0"
         },
         "compile": {
@@ -4537,6 +4538,19 @@
         "runtime": {
           "bin/placeholder/CheckInn.Services.dll": {}
         }
+      },
+      "CheckInn.Util/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/CheckInn.Util.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CheckInn.Util.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
@@ -12498,6 +12512,11 @@
       "type": "project",
       "path": "../CheckInn.Services/CheckInn.Services.csproj",
       "msbuildProject": "../CheckInn.Services/CheckInn.Services.csproj"
+    },
+    "CheckInn.Util/1.0.0": {
+      "type": "project",
+      "path": "../CheckInn.Util/CheckInn.Util.csproj",
+      "msbuildProject": "../CheckInn.Util/CheckInn.Util.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -12509,6 +12528,7 @@
       "CheckInn.Entities >= 1.0.0",
       "CheckInn.Repositories >= 1.0.0",
       "CheckInn.Services >= 1.0.0",
+      "CheckInn.Util >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.4",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 7.0.4",
       "Microsoft.AspNetCore.OpenApi >= 7.0.4",
@@ -12558,6 +12578,9 @@
             },
             "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Services\\CheckInn.Services.csproj": {
               "projectPath": "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Services\\CheckInn.Services.csproj"
+            },
+            "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Util\\CheckInn.Util.csproj": {
+              "projectPath": "C:\\Users\\Ritech\\Projects\\School\\SWE\\CheckInn\\Code\\checkinn-api\\CheckInn.Util\\CheckInn.Util.csproj"
             }
           }
         }

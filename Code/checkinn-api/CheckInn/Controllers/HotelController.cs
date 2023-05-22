@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using CheckInn.Repositories.Interfaces;
 using CheckInn.Services.Hotels;
+using CheckInn.Util.AuthPolicy;
 using Entities.DTOs;
 using Entities.DTOs.Amenities;
 using Entities.DTOs.DTOs.Room;
@@ -74,7 +75,7 @@ namespace CheckInn.Controllers
         }
 
         [HttpPut]
-        [Authorize(Policy = "ManagerAndAbove")]
+        [Authorize(Policy = AuthPolicy.ManagerAndAbove)]
         public async Task<ActionResult<bool>> Update([FromBody]UpdateHotelDTO request)
         {
             try
@@ -90,7 +91,7 @@ namespace CheckInn.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        [Authorize(Policy = "AdminsOnly")]
+        [Authorize(Policy = AuthPolicy.AdminsOnly)]
         public async Task<ActionResult<bool>> Delete([FromRoute] long id)
         {
             try

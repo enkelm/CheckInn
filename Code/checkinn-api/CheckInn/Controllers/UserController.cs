@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CheckInn.Services.Users;
+using CheckInn.Util.AuthPolicy;
 using Entities.DTOs.DTOs.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -40,7 +41,7 @@ namespace CheckInn.Controllers
         
         [HttpPost]
         [Route("register-super_admin")]
-        [Authorize(Policy = "SuperAdminOnly")]
+        [Authorize(Policy = AuthPolicy.SuperAdminOnly)]
         public async Task<ActionResult<bool>> RegisterSuperAdmin([FromForm] UserDTO userDto)
         {
             try

@@ -35,6 +35,7 @@
       <ProjectReference Include="..\CheckInn.Entities\CheckInn.Entities.csproj" />
       <ProjectReference Include="..\CheckInn.Repositories\CheckInn.Repositories.csproj" />
       <ProjectReference Include="..\CheckInn.Services\CheckInn.Services.csproj" />
+      <ProjectReference Include="..\CheckInn.Util\CheckInn.Util.csproj" />
     </ItemGroup>
 
     <ItemGroup>
