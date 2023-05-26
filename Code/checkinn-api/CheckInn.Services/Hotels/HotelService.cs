@@ -2,6 +2,7 @@ using AutoMapper;
 using CheckInn.Repositories.Interfaces;
 using CheckInn.Repositories.UoW;
 using CheckInn.Services.Base;
+using CheckInn.Services.Util.FileService;
 using Entities.DTOs;
 using Entities.Entities;
 using Microsoft.Extensions.Logging;
@@ -13,13 +14,16 @@ public class HotelService : BaseService, IHotelService
     private readonly IUnitOfWork _unitOfWork;
     private readonly ILogger<HotelService> _logger;
     private readonly IMapper _mapper;
-    private IHotelRepository _hotelRepository => _unitOfWork.GetRepository<IHotelRepository>();
+    private readonly IHotelRepository _hotelRepository;
+    private readonly IFileService _fileService;
 
-    public HotelService(IUnitOfWork unitOfWork, ILogger<HotelService> logger, IMapper mapper) : base(unitOfWork, logger)
+    public HotelService(IUnitOfWork unitOfWork, ILogger<HotelService> logger, IMapper mapper, IHotelRepository hotelRepository, IFileService fileService) : base(unitOfWork, logger)
     {
         _unitOfWork = unitOfWork;
         _logger = logger;
         _mapper = mapper;
+        _hotelRepository = hotelRepository;
+        _fileService = fileService;
     }
 
 
@@ -46,6 +50,22 @@ public class HotelService : BaseService, IHotelService
 
     public async Task<HotelDTO> Create(CreateHotelDTO hotelDto)
     {
+        if (hotelDto.Rooms.Any(room => room.RoomType == RoomType.EntireHotel) && hotelDto.Rooms.Count > 1) 
+            throw new Exception("Listing can only have one room");
+        
+        var path = await _fileService.SaveFile(hotelDto.Image);
+        hotelDto.ImageUrl.Append(path);
+        
+        foreach (var roomDto in hotelDto.Rooms)
+        {
+            var paths = await _fileService.SaveFiles(roomDto.Images);
+            if (paths == null) continue;
+            foreach (var s in paths)
+            {
+                roomDto.ImagesUrl.Append(s);
+            }
+        }
+        
         var hotel = _mapper.Map<CreateHotelDTO, Hotel>(hotelDto);
         var result = _hotelRepository.Add(hotel);
 

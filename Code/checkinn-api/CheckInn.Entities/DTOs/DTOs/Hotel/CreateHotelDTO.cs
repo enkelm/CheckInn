@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 using Entities.DTOs.Amenities;
 using Entities.DTOs.DTOs.Room;
@@ -17,7 +18,8 @@ public class CreateHotelDTO
     [Required]
     public int Occupancy { get; set; }
     public int HotelType { get; set; }
-    public string ImageUrl { get; set; }
+    public IEnumerable<string>? ImageUrl { get; set; }
+    public IFormFile? Image { get; set; }
     [Required]
     public DateTime CreatedDate { get; set; }
     public DateTime UpdatedDate { get; set; }

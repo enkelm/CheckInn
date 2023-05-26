@@ -21,8 +21,9 @@ public class FileService : IFileService
         return Path.Combine(_environment.WebRootPath, "Files\\images");
     }
 
-    public async Task<string> SaveFile(IFormFile file)
+    public async Task<string?> SaveFile(IFormFile? file)
     {
+        if (file == null) return null;
         var special = Guid.NewGuid().ToString();
         var folderPath = _environment.WebRootPath + "\\Uploads\\ProductImages";
         var fileName = special + "-" + file.FileName;
@@ -32,9 +33,20 @@ public class FileService : IFileService
         {
             await file.CopyToAsync(stream);
         }
-        return Path.Combine("https://localhost:44384/images", fileName);
+        return Path.Combine(_environment.WebRootPath, "images", fileName);
     }
-    
+
+    public async Task<IEnumerable<string?>?> SaveFiles(IEnumerable<IFormFile?>? files)
+    {
+        if (files == null) return null;
+        var filePaths = new List<string?>();
+        foreach (var file in files)
+        {
+            filePaths.Add(await SaveFile(file));
+        }
+        return filePaths;
+    }
+
     public async Task<bool> UpdateFile(IFormFile? file, string? path)
     {
         if (file == null || path == null) return false;

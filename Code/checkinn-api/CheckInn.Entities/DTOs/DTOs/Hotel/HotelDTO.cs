@@ -22,7 +22,7 @@ public class HotelDTO
     public int Occupied { get; set; }
     public HotelType HotelType { get; set; }
     public bool FullyBooked => Occupancy == Occupied;
-    public string ImageUrl { get; set; }
+    public IEnumerable<string>? ImageUrl { get; set; }
     public DateTime CreatedDate { get; set; }
     public DateTime? UpdatedDate { get; set; }
 

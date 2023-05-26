@@ -20,7 +20,9 @@ public class RoomDTO
     public int Occupancy { get; set; }
     public bool Occupied { get; set; }
     public double PricePerNight { get; set; }
+    public DateTime MinimumBookingTime { get; set; }
+    public DateTime DefaultBookingTime { get; set; }
     public RoomType RoomType { get; set; }
-    public string? ImagesUrl { get; set; }
+    public IEnumerable<string>? ImagesUrl { get; set; }
     public RoomAmenitiesDTO RoomAmenities { get; set; }
 }

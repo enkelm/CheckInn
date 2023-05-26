@@ -6,7 +6,6 @@ namespace Entities.DTOs.DTOs.Room;
 public class UpdateRoomDTO : CreateRoomDTO
 {
     [Required] public long Id { get; set; }
-
     public UpdateRoomDTO()
     {
         RoomAmenities = new UpdateRoomAmenitiesDTO()

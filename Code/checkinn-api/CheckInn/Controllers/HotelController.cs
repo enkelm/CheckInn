@@ -61,7 +61,7 @@ namespace CheckInn.Controllers
         }
         
         [HttpPost]
-        public async Task<ActionResult<HotelDTO>> Create([FromBody] CreateHotelDTO hotelDto)
+        public async Task<ActionResult<HotelDTO>> Create([FromForm] CreateHotelDTO hotelDto)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace CheckInn.Controllers
 
         [HttpPut]
         [Authorize(Policy = AuthPolicy.ManagerAndAbove)]
-        public async Task<ActionResult<bool>> Update([FromBody]UpdateHotelDTO request)
+        public async Task<ActionResult<bool>> Update([FromForm]UpdateHotelDTO request)
         {
             try
             {
