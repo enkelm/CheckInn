@@ -21,8 +21,8 @@
 **/.idea/**/contentModel.xml
 **/.idea/**/modules.xml
 
-**/bin/**
-**/obj/**
+**/bin/*
+**/obj/*
 
 **/wwwroot/Files/images/*.png
 **/wwwroot/Files/images/*.jpg
