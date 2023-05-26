@@ -17,26 +17,16 @@ import {
 } from '../../assests/common-styles';
 import CButton from '../../components/UI/Button/Button';
 import './ListingCard.css';
+import { Listing } from '../../data';
 
 interface ListingCardProps {
-  location: {
-    id: number;
-    locationImages: {
-      id: number;
-      url: string;
-    }[];
-    location: string;
-    days: string;
-    price: string;
-    isNew: boolean;
-    rating: number;
-  };
+  location: Listing;
 }
 
 const ListingCard: FC<ListingCardProps> = ({ location }) => {
   const [activeStep, setActiveStep] = useState(0);
 
-  const maxSteps = location.locationImages.length; // so that we know how many dots
+  const maxSteps = location.imageUrl.length; // so that we know how many dots
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1); // jumps when we click the next arrow
@@ -62,17 +52,17 @@ const ListingCard: FC<ListingCardProps> = ({ location }) => {
         <FavoriteBorderIcon sx={{ fontSize: 24, color: 'white' }} />
       </Box>
 
-      {location.locationImages.length !== 0 && (
+      {location.imageUrl.length !== 0 && (
         <SwipeableViews
           axis={'x'}
           index={activeStep}
           onChangeIndex={handleStepChange}
           enableMouseEvents
         >
-          {location.locationImages.map((step, index) => {
+          {location.imageUrl.map((image, index) => {
             return (
               <div key={index}>
-                <Box component='img' sx={carouselImage} src={step.url} alt={step.url} />
+                <Box component='img' sx={carouselImage} src={image} alt={image} />
               </div>
             );
           })}
@@ -105,13 +95,18 @@ const ListingCard: FC<ListingCardProps> = ({ location }) => {
 
       <Box sx={flexBetween}>
         <Box sx={{ mt: 2 }}>
-          <Typography component='h3'> {location.location}</Typography>
-          <Typography component='h4'> {location.days}</Typography>
-          <Typography component='h5'> {location.price}</Typography>
+          <Typography component='h3'> {location.hotelName}</Typography>
+          <Typography component='h4'> {location.rooms[0].defaultBookingTime.toString()}</Typography>
+          <Typography component='h5'>
+            {location.rooms.reduce((current, reduced) => {
+              reduced.pricePerNight += current.pricePerNight;
+              return reduced;
+            }).pricePerNight / location.rooms.length}
+          </Typography>
         </Box>
         <Box sx={{ mt: 2 }}>
           <Box sx={{ ...dFlex, alignItems: 'center', justifyContent: 'center' }}>
-            {location.isNew ? (
+            {location.rating === null ? (
               <>
                 <Typography component='h5'>New</Typography>
                 <StarIcon sx={{ fontSize: 18 }} />

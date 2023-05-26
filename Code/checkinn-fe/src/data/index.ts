@@ -19,16 +19,22 @@ export interface Listing {
   rating: number;
   occupancy: number;
   occupied: number;
-  hotelType: number;
+  hotelType: HotelType;
   fullyBooked: boolean;
-  imageUrl: string;
+  imageUrl: string[];
   createdDate: Date;
   updatedDate: Date;
   hotelAmenities: ListingAmenities;
   rooms: Room[];
+  reservations: Reservation[];
 }
 
-interface ListingAmenities {
+export enum HotelType {
+  Apartment = 0,
+  House = 1,
+}
+
+export interface ListingAmenities {
   hotelId: number;
   wifi: boolean;
   pets: boolean;
@@ -37,18 +43,27 @@ interface ListingAmenities {
   ac: boolean;
 }
 
-interface Room {
+export interface Room {
   id: number;
   hotelId: number;
   description: string;
   occupancy: number;
   pricePerNight: number;
-  roomType: number;
+  minimumBookingTime: Date;
+  defaultBookingTime: Date;
+  roomType: RoomType;
   imagesUrl: string;
   roomAmenities: RoomAmenities;
 }
 
-interface RoomAmenities {
+export enum RoomType {
+  Bedroom = 0,
+  Livingroom = 1,
+  Studio = 2,
+  EntireHotle = 3,
+}
+
+export interface RoomAmenities {
   id: number;
   roomId: number;
   kitchen: boolean;
@@ -56,4 +71,15 @@ interface RoomAmenities {
   balcony: boolean;
   bedType: number;
   tv: boolean;
+}
+
+export interface Reservation {
+  id: number;
+  userId: string;
+  hotelId: number;
+  approved: boolean;
+  totalPrice: number;
+  startDate: Date;
+  endDate: Date;
+  rooms: Room[] | null;
 }
