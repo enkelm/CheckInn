@@ -8,11 +8,13 @@ import CustomBottomNavigation from './BottomNav';
 import MobileSearchBar from './MobileSearchBar';
 import Login from '../../features/authentication/Login/Login';
 import Register from '../../features/authentication/Register/Register';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
+  const navigate = useNavigate();
   return (
     <div className={styles.navbar}>
-      <img className={styles.navbarLogo} src={logo} alt='logo' />
+      <img className={styles.navbarLogo} src={logo} alt='logo' onClick={() => navigate('/')} />
 
       <div className={styles.searchBar}>
         <div className={styles['searchBar__text']}>Any Where</div>

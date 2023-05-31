@@ -3,7 +3,6 @@ import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import ListingCard from './ListingCard';
 import { getListingsThunk } from '../../store/listings-slice';
 import { Box, Grid } from '@mui/material';
-import { locations as listings } from '../../data/mock-data';
 
 const ListingsContainer = () => {
   const listings = useAppSelector((state) => state.listings);

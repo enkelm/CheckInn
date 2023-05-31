@@ -35,7 +35,7 @@ export const createApiEndpoint = (endpoint: string, method?: string): CreateEnpo
   axios.defaults.headers.delete['Authorization'] = `Bearer ${token}`;
   axios.defaults.headers.put['Authorization'] = `Bearer ${token}`;
 
-  const url = method ? `${BASE_URL + endpoint}/${method}/` : `${BASE_URL + endpoint}`;
+  const url = method ? `${BASE_URL + endpoint}/${method}/` : `${BASE_URL + endpoint}/`;
 
   return {
     fetchAll: (cancelToken) => axios.get(url, { cancelToken: cancelToken?.token }),

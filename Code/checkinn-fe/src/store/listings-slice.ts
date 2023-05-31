@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getAllListings } from '../data/listings';
+import { getAllListings, getListingById } from '../data/listings';
 import { Listing } from '../data';
 import { CancelTokenSource } from 'axios';
 
@@ -9,6 +9,19 @@ export const getListingsThunk = createAsyncThunk<Listing[], CancelTokenSource | 
   'listings/getAllAsync',
   async (cancelToken, { dispatch, rejectWithValue }) => {
     return await getAllListings({ cancelToken, dispatch, rejectWithValue });
+  },
+);
+
+interface IGetListingThunk {
+  id: number;
+  setLisiting: React.Dispatch<React.SetStateAction<Listing | undefined>>;
+  cancelToken: CancelTokenSource | undefined;
+}
+
+export const getListingThunk = createAsyncThunk<Listing, IGetListingThunk>(
+  'listings/getById',
+  async ({ id, setLisiting, cancelToken }, { dispatch, rejectWithValue }) => {
+    return await getListingById(id, setLisiting, { cancelToken, dispatch, rejectWithValue });
   },
 );
 
@@ -34,6 +47,12 @@ const listingSlice = createSlice({
           const listingExists = state.find((listing) => item.id === listing.id);
           !listingExists && state.push(item);
         });
+    });
+    builder.addCase(getListingThunk.fulfilled, (state, action: PayloadAction<Listing>) => {
+      if (!action?.payload) return;
+      const { payload } = action;
+      const listingExists = state.find((listing) => payload.id === listing.id);
+      !listingExists && state.push(payload);
     });
   },
 });

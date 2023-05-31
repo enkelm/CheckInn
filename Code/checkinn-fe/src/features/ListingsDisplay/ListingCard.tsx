@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, MouseEventHandler, useState } from 'react';
 import Box from '@mui/material/Box/Box';
 import MobileStepper from '@mui/material/MobileStepper';
 import Typography from '@mui/material/Typography';
@@ -18,6 +18,7 @@ import {
 import CButton from '../../components/UI/Button/Button';
 import './ListingCard.css';
 import { Listing } from '../../data';
+import { useNavigate } from 'react-router-dom';
 
 interface ListingCardProps {
   location: Listing;
@@ -25,6 +26,7 @@ interface ListingCardProps {
 
 const ListingCard: FC<ListingCardProps> = ({ location }) => {
   const [activeStep, setActiveStep] = useState(0);
+  const navigate = useNavigate();
 
   const maxSteps = location.imageUrl.length; // so that we know how many dots
 
@@ -38,6 +40,11 @@ const ListingCard: FC<ListingCardProps> = ({ location }) => {
 
   const handleStepChange: OnChangeIndexCallback | undefined = (step) => {
     step && setActiveStep(step); // handle swipe change
+  };
+
+  const openListing: MouseEventHandler<HTMLDivElement> = () => {
+    console.log(location.id);
+    navigate(`listing/${location.id}`);
   };
 
   return (
@@ -58,6 +65,7 @@ const ListingCard: FC<ListingCardProps> = ({ location }) => {
           index={activeStep}
           onChangeIndex={handleStepChange}
           enableMouseEvents
+          onClick={openListing}
         >
           {location.imageUrl.map((image, index) => {
             return (

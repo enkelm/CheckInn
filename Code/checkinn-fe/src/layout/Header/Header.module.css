@@ -13,6 +13,10 @@
   height: 2rem;
 }
 
+.navbarLogo:hover {
+  cursor: pointer;
+}
+
 .searchBar {
   display: flex;
   justify-content: flex-start;
