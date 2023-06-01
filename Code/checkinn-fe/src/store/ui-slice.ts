@@ -11,10 +11,11 @@ interface UIState {
 interface ModalStates {
   loginModal: boolean;
   signupModal: boolean;
+  createListingModal: boolean;
 }
 
 const initialState: UIState = {
-  modalIsVisible: { loginModal: false, signupModal: false },
+  modalIsVisible: { loginModal: false, signupModal: false, createListingModal: false },
   loading: false,
   alert: false,
   toast: false,

@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 import { getListingThunk } from '../store/listings-slice';
 import { Listing } from '../data';
+import { Box } from '@mui/material';
+import ListingHeader from '../features/ListingPage/ListingHeader';
 
 const ListingDetails = () => {
   const listingId = useParams().listingId;
@@ -28,7 +30,11 @@ const ListingDetails = () => {
       cleanUp = true;
     };
   }, []);
-  return <div>{JSON.stringify(listing)}</div>;
+  return (
+    <Box sx={{ margin: '0 20%' }}>
+      <ListingHeader listing={listing} />
+    </Box>
+  );
 };
 
 export default ListingDetails;

@@ -1,17 +1,31 @@
 import { Modal } from '@mui/material';
-import React, { FC, JSXElementConstructor, ReactElement } from 'react';
+import React, { FC, ReactNode } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import { toggleAlert, toggleModal } from '../../../store/ui-slice';
+import CCard from '../Card/Card';
+import { SxProps, Theme } from '@mui/material/styles';
+import styled from '@emotion/styled';
 
 interface ModalProps {
-  children: ReactElement<unknown, string | JSXElementConstructor<unknown>>;
+  children: ReactNode;
   type: ModalTypes;
+  sx?: SxProps<Theme> | undefined;
+  title?: ReactNode;
   onClose?: ((event: object, reason: 'backdropClick' | 'escapeKeyDown') => void) | undefined;
 }
 
-export type ModalTypes = 'loginModal' | 'signupModal';
+export type ModalTypes = 'loginModal' | 'signupModal' | 'createListingModal';
 
-const CModal: FC<ModalProps> = ({ children, type, onClose }) => {
+const Card = styled(CCard)({
+  position: 'absolute',
+  top: '50%',
+  right: '50%',
+  transform: 'translate(50%, -50%)',
+  minWidth: '30vw',
+  padding: '2rem',
+});
+
+const CModal: FC<ModalProps> = ({ children, type, sx, title, onClose }) => {
   const modalIsVisible = useAppSelector((state) => state.ui.modalIsVisible[type]);
   const alertIsVisible = useAppSelector((state) => state.ui.alert);
   const dispatch = useAppDispatch();
@@ -25,7 +39,9 @@ const CModal: FC<ModalProps> = ({ children, type, onClose }) => {
         dispatch(toggleModal(type));
       }}
     >
-      {children}
+      <Card title={title} sx={sx}>
+        {children}
+      </Card>
     </Modal>
   );
 };

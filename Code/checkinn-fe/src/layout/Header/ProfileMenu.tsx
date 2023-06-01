@@ -19,12 +19,19 @@ const ProfileMenu = () => {
 
   const signoutHandler = () => {
     localStorage.setItem('USER', '');
-    dispatch(loggedInUser(undefined));
+    dispatch(loggedInUser({ token: null, role: null, userId: null }));
   };
 
   const handleClick: React.MouseEventHandler<HTMLDivElement> | undefined = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
+  const handleCreateListingModal = () => {
+    user?.token !== null
+      ? dispatch(toggleModal('createListingModal'))
+      : dispatch(toggleModal('loginModal'));
+  };
+
   const handleClose = () => {
     setAnchorEl(undefined);
   };
@@ -90,8 +97,8 @@ const ProfileMenu = () => {
             width: '100%',
           }}
         />
-        <MenuItem onClick={handleClose} className={styles.menuItems}>
-          Airbnb Your Home
+        <MenuItem onClick={handleCreateListingModal} className={styles.menuItems}>
+          List your property
         </MenuItem>
         <MenuItem onClick={() => dispatch(toggleToast())} className={styles.menuItems}>
           Host an experience
