@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../hooks/store-hooks';
 import { getListingThunk } from '../store/listings-slice';
 import { Listing } from '../data';
 import { Box } from '@mui/material';

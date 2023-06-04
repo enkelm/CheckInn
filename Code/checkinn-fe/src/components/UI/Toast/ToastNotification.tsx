@@ -1,6 +1,6 @@
 import React, { FC, ReactElement } from 'react';
 import { Slide, SlideProps, Snackbar, SnackbarCloseReason } from '@mui/material';
-import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../../hooks/store-hooks';
 import { toggleToast } from '../../../store/ui-slice';
 import { ToastAlertProps } from '../Alerts/Alert';
 

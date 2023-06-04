@@ -8,7 +8,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Input from '../../UI/Input/Input';
 import CButton from '../../UI/Button/Button';
 import styles from './LoginForm.module.css';
-import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../../hooks/store-hooks';
 import { loginThunk } from '../../../store/user-slice';
 import CAlert from '../../UI/Alerts/Alert';
 import { toggleAlert } from '../../../store/ui-slice';
