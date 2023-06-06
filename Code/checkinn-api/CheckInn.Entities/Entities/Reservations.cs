@@ -10,6 +10,7 @@ public class Reservations : BaseEntity
 
     public bool Approved { get; set; }
     public double TotalPrice { get; set; }
+    public bool hasEnded { get; set;}
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
 

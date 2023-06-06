@@ -50,4 +50,20 @@ public class ReservationService : BaseService, IReservationService
 
         return _mapper.Map<Entities.Entities.Reservations, ReservationDTO>(result);
     }
+
+    public async Task<bool> EndReservation(long id)
+    {
+        return false;
+    }
+
+    public async Task<bool> EndReservationByEndDate(Entities.Entities.Reservations reservations)
+    {
+        return false;
+    }
+
+    public async Task<bool> CancelReservation(Entities.Entities.Reservations reservations)
+    {
+        return false;
+    }
+    
 }

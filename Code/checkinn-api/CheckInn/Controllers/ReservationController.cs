@@ -50,5 +50,8 @@ namespace CheckInn.Controllers
                 return BadRequest();
             }
         }
+        
+        // [HttpPost]
+        // public async Task<ActionResult<ReservationDTO>> EndReservationByEndDate([FromBody] return)
     }
 }

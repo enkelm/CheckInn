@@ -6,4 +6,7 @@ public interface IReservationService
 {
     Task<ReservationDTO> GetByUserId(string id);
     Task<ReservationDTO> Create(CreateReservationDTO reservationDto);
+    Task<bool> EndReservation(long id);
+    Task<bool> EndReservationByEndDate(Entities.Entities.Reservations reservations);
+    Task<bool> CancelReservation(Entities.Entities.Reservations reservations);
 }
