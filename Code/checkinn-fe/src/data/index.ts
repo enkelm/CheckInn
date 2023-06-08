@@ -11,6 +11,15 @@ export interface ReqConfig {
   rejectWithValue?: (value: unknown) => RejectedWithValueActionFromAsyncThunk<AnyAsyncThunk>;
 }
 
+export interface CreateListingDTO extends Omit<Listing, 'imageUrl' | 'rooms'> {
+  imageUrl: File | null;
+  rooms: CreateRoomDTO[];
+}
+
+export interface CreateRoomDTO extends Omit<Room, 'imagesUrl'> {
+  imagesUrl: File[];
+}
+
 export interface Listing {
   id: number;
   hotelName: string;
@@ -59,10 +68,10 @@ export interface Room {
   description: string;
   occupancy: number;
   pricePerNight: number;
-  minimumBookingTime: string;
-  defaultBookingTime: string;
+  minimumBookingTime: number;
+  defaultBookingTime: number;
   roomType: RoomType;
-  imagesUrl: string;
+  imagesUrl: string[];
   roomAmenities: RoomAmenities;
 }
 
@@ -79,8 +88,14 @@ export interface RoomAmenities {
   kitchen: boolean;
   privateBathroom: boolean;
   balcony: boolean;
-  bedType: number;
+  bedType: BedType;
   tv: boolean;
+}
+
+export enum BedType {
+  Single = 0,
+  Double = 1,
+  Couch = 2,
 }
 
 export interface Reservation {
@@ -94,16 +109,16 @@ export interface Reservation {
   rooms: Room[] | null;
 }
 
-export const initialRoom: Room = {
+export const initialRoom: CreateRoomDTO = {
   id: 0,
   hotelId: 0,
   description: '',
-  occupancy: 0,
+  occupancy: 1,
   pricePerNight: 0,
-  minimumBookingTime: '',
-  defaultBookingTime: '',
+  minimumBookingTime: 1,
+  defaultBookingTime: 1,
   roomType: RoomType.Bedroom,
-  imagesUrl: '',
+  imagesUrl: [],
   roomAmenities: {
     id: 0,
     roomId: 0,
@@ -126,7 +141,7 @@ export const initialReservation: Reservation = {
   rooms: null,
 };
 
-export const initialListing: Listing = {
+export const initialListing: CreateListingDTO = {
   id: 0,
   hotelName: '',
   location: null,
@@ -134,11 +149,11 @@ export const initialListing: Listing = {
   listingApproved: false,
   description: '',
   rating: null,
-  occupancy: 0,
+  occupancy: 1,
   occupied: 0,
   hotelType: HotelType.Apartment,
   fullyBooked: false,
-  imageUrl: [],
+  imageUrl: null,
   createdDate: '',
   updatedDate: '',
   hotelAmenities: {

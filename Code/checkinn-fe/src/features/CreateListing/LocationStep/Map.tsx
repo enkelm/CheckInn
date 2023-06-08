@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react';
-import L, { LatLng } from 'leaflet';
+import React from 'react';
+import L from 'leaflet';
 import { MapContainer, Marker, TileLayer, useMapEvents } from 'react-leaflet';
 
 import 'leaflet/dist/leaflet.css';
-import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
 import markerIcon from '../../../assests/marker.svg';
-import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 import { useAppSelector } from '../../../hooks/store-hooks';
 
 const iconPerson = new L.Icon({

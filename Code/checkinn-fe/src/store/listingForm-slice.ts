@@ -1,27 +1,29 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
-  Listing,
   ListingAmenities,
-  Room,
   Reservation,
   initialListing,
   HotelType,
   CountrySelectValue,
+  CreateListingDTO,
+  CreateRoomDTO,
 } from '../data';
+// import store from '.';
 
-const initialState: Listing = initialListing;
+const initialState: CreateListingDTO = initialListing;
 
-type T = keyof Listing;
+type T = keyof CreateListingDTO;
 
 const listingFormSlice = createSlice({
   name: 'listings',
   initialState: initialState,
   reducers: {
-    updateForm(state, action: PayloadAction<{ propName: T; newValue: Listing[T] }>) {
+    updateForm(state, action: PayloadAction<{ propName: T; newValue: CreateListingDTO[T] }>) {
       const { propName, newValue } = action.payload;
       if (!state) return;
       if (propName === 'category' || propName === 'hotelName' || propName === 'description')
         state[propName] = newValue as string;
+      if (propName === 'imageUrl') state[propName] = newValue as File;
       if (propName === 'id' || propName === 'occupancy' || propName === 'occupied')
         state[propName] = newValue as number;
       if (propName === 'listingApproved' || propName === 'fullyBooked')
@@ -30,7 +32,7 @@ const listingFormSlice = createSlice({
       if (propName === 'createdDate' || propName === 'updatedDate')
         state[propName] = newValue as string;
       if (propName === 'hotelAmenities') state[propName] = newValue as ListingAmenities;
-      if (propName === 'rooms') state[propName] = newValue as Room[];
+      if (propName === 'rooms') state[propName] = newValue as CreateRoomDTO[];
       if (propName === 'reservations') state[propName] = newValue as Reservation[];
       if (propName === 'location') state[propName] = newValue as CountrySelectValue;
     },

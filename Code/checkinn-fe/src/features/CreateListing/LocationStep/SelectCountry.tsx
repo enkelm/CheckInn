@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import Select from 'react-select';
 import useCountries from '../../../hooks/useCountries';
 import { CountrySelectValue } from '../../../data';
@@ -20,7 +20,7 @@ const SelectCountry: React.FC<CountrySelectProps> = ({ onChange }) => {
       options={getAll()}
       value={value}
       onChange={(value) => onChange(value as CountrySelectValue)}
-      formatOptionLabel={(option: any) => (
+      formatOptionLabel={(option) => (
         <div
           className='
           flex flex-row items-center gap-3'

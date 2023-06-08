@@ -5,15 +5,19 @@ import { Box } from '@mui/material';
 import { flexCenter } from '../../assests/common-styles';
 import CategoryPicker from './CategoryStep/CategoryPicker';
 import LocationStep from './LocationStep/LocationStep';
-// import { useAppSelector } from '../../../hooks/hooks';
+import InfoStep from './InfoStep/InfoStep';
+import DescriptionStep from './DescriptionStep/DescriptionStep';
+import { useAppSelector } from '../../hooks/store-hooks';
+import RoomsStep from './RoomsStep/RoomsStep';
+import ImageStep from './ImageStep/ImageStep';
 
 enum STEPS {
   CATEGORY = 0,
   LOCATION = 1,
   INFO = 2,
-  IMAGES = 3,
+  ROOMS = 3,
   DESCRIPTION = 4,
-  PRICE = 5,
+  IMAGES = 5,
 }
 
 export interface IForm {
@@ -21,8 +25,9 @@ export interface IForm {
 }
 
 const CreateListing = () => {
+  const form = useAppSelector((state) => state.createListing);
+  const [uploadImages, setUploadImages] = useState<File[][]>([]);
   const [step, setStep] = useState(STEPS.CATEGORY);
-  // const form = useAppSelector((state) => state.createListing);
 
   const onBack = () => setStep((value) => value - 1);
   const onNext = () =>
@@ -32,7 +37,7 @@ const CreateListing = () => {
     });
 
   const actionLabel = useMemo(() => {
-    if (step === STEPS.PRICE) return 'Create';
+    if (step === STEPS.IMAGES) return 'Create';
     return 'Next';
   }, [step]);
 
@@ -43,7 +48,19 @@ const CreateListing = () => {
           return <CategoryPicker />;
 
         case STEPS.LOCATION:
-          return <LocationStep></LocationStep>;
+          return <LocationStep />;
+
+        case STEPS.INFO:
+          return <InfoStep />;
+
+        case STEPS.ROOMS:
+          return <RoomsStep />;
+
+        case STEPS.DESCRIPTION:
+          return <DescriptionStep />;
+
+        case STEPS.IMAGES:
+          return <ImageStep setImages={setUploadImages} />;
 
         default:
           break;
@@ -52,13 +69,14 @@ const CreateListing = () => {
     [step],
   );
 
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData();
+  };
+
   return (
-    <CModal
-      // title='List your property!'
-      type='createListingModal'
-      sx={{ width: '40vw', minHeight: '40vh' }}
-    >
-      <form>
+    <CModal type='createListingModal' sx={{ minWidth: '40vw', minHeight: '40vh' }}>
+      <form onSubmit={submitHandler}>
         <Box sx={{ ...flexCenter, flexDirection: 'column' }}>
           {renderStep(step)}
           <Box
@@ -75,7 +93,11 @@ const CreateListing = () => {
                 Back
               </CButton>
             )}
-            <CButton sx={{ width: step === STEPS.CATEGORY ? '100%' : '50%' }} onClick={onNext}>
+            <CButton
+              sx={{ width: step === STEPS.CATEGORY ? '100%' : '50%' }}
+              type={step === STEPS.IMAGES ? 'submit' : 'button'}
+              onClick={onNext}
+            >
               {actionLabel}
             </CButton>
           </Box>
