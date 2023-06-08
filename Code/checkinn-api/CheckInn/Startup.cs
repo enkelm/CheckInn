@@ -4,12 +4,14 @@ using CheckInn.Util.WebHostEnvironment;
 using Entities;
 using Entities.DTOs.Config;
 using Entities.Entities;
+using Hangfire;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Hangfire.SqlServer;
 using Serilog;
 
 namespace CheckInn;
@@ -33,7 +35,11 @@ public class Startup
         {
             options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));
         });
-        
+        services.AddHangfire(config =>
+        {
+            config.UseSqlServerStorage(_configuration.GetConnectionString("DefaultConnection"));
+        });
+        services.AddHangfireServer();
         // IdentityCore
         var identity = services.AddIdentity<User, IdentityRole>(options => options.User.RequireUniqueEmail = true);
         identity = new IdentityBuilder(identity.UserType, typeof(IdentityRole), services);
