@@ -43,7 +43,6 @@ const ListingCard: FC<ListingCardProps> = ({ location }) => {
   };
 
   const openListing: MouseEventHandler<HTMLDivElement> = () => {
-    console.log(location.id);
     navigate(`listing/${location.id}`);
   };
 

@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import type { OverridableStringUnion } from '@mui/types/index';
 import React, { ReactNode, forwardRef } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../../hooks/store-hooks';
 import { toggleAlert } from '../../../store/ui-slice';
 
 export interface ToastAlertProps {

@@ -1,6 +1,6 @@
 import { Modal } from '@mui/material';
 import React, { FC, ReactNode } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../../hooks/store-hooks';
 import { toggleAlert, toggleModal } from '../../../store/ui-slice';
 import CCard from '../Card/Card';
 import { SxProps, Theme } from '@mui/material/styles';

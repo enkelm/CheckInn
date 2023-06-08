@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/store-hooks';
 import ListingCard from './ListingCard';
 import { getListingsThunk } from '../../store/listings-slice';
 import { Box, Grid } from '@mui/material';

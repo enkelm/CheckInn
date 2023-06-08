@@ -9,7 +9,7 @@ import MobileSearchBar from './MobileSearchBar';
 import Login from '../../features/authentication/Login/Login';
 import Register from '../../features/authentication/Register/Register';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/store-hooks';
 import { toggleModal } from '../../store/ui-slice';
 import CreateListing from '../../features/CreateListing/CreateListing';
 

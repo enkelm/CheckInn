@@ -4,7 +4,7 @@ import { LoadingButton } from '@mui/lab';
 import type { OverridableStringUnion } from '@mui/types/index';
 import type { SxProps } from '@mui/system/styleFunctionSx';
 import type { Theme } from '@mui/material/styles/createTheme';
-import { useAppSelector } from '../../../hooks/hooks';
+import { useAppSelector } from '../../../hooks/store-hooks';
 
 interface CButtonProps {
   children?: React.ReactNode;

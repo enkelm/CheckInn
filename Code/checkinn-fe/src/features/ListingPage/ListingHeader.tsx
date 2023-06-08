@@ -2,7 +2,7 @@ import React from 'react';
 import { Box } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import { Listing } from '../../data';
-import { flexBetween, flexBetweenCenter, flexCenter } from '../../assests/common-styles';
+import { flexBetweenCenter, flexCenter } from '../../assests/common-styles';
 
 interface ListingHeaderProps {
   listing: Listing | undefined;

@@ -5,7 +5,7 @@ import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import { PopoverProps } from '@mui/material/Popover';
 import styles from './Header.module.css';
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/store-hooks';
 import { toggleModal, toggleToast } from '../../store/ui-slice';
 import { loggedInUser } from '../../store/user-slice';
 import ToastNotification from '../../components/UI/Toast/ToastNotification';

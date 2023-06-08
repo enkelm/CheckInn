@@ -9,7 +9,7 @@ import Input from '../../UI/Input/Input';
 import { MuiTelInput, matchIsValidTel } from 'mui-tel-input';
 import CButton from '../../UI/Button/Button';
 import { signup } from '../../../data/authentication';
-import { useAppDispatch } from '../../../hooks/hooks';
+import { useAppDispatch } from '../../../hooks/store-hooks';
 import CAlert from '../../UI/Alerts/Alert';
 
 const initialForm = {
@@ -62,8 +62,7 @@ const SignupForm = forwardRef(function SignupForm() {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     formData.append('roles', 'Client');
-    const res = await signup(formData, { dispatch });
-    console.log(res);
+    await signup(formData, { dispatch });
   };
 
   return (
